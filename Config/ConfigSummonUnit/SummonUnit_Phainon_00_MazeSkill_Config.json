@@ -1,0 +1,224 @@
+{
+  "GroupConfigName": "FollowField",
+  "ConfigEntityPath": "Config/ConfigEntity/SummonUnit/SummonUnit_Common_TeamField_Entity.json",
+  "ResidentEffects": [
+    {
+      "$type": "RPG.GameCore.TriggerEffect",
+      "TargetType": {
+        "$type": "RPG.GameCore.TargetAlias",
+        "Alias": "Caster"
+      },
+      "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_Mask.prefab"
+    },
+    {
+      "$type": "RPG.GameCore.TriggerEffect",
+      "TargetType": {
+        "$type": "RPG.GameCore.TargetAlias",
+        "Alias": "Caster"
+      },
+      "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_Camera.prefab"
+    }
+  ],
+  "AttachPoint": "Origin",
+  "OnDestroy": [],
+  "TriggerConfig": {
+    "CustomTriggers": [
+      {
+        "TriggerName": "PhainonFieldTrigger_Monster",
+        "Radius": {
+          "IsDynamic": false,
+          "FixedValue": {
+            "Value": 9.0
+          }
+        },
+        "NeedRaycast": true,
+        "ForceSyncTargetToSever": true,
+        "TargetTypes": [
+          "NPCMonster"
+        ],
+        "ColliderRelativePath": "Trigger",
+        "OnTriggerEnter": [
+          {
+            "$type": "RPG.GameCore.PredicateTaskList",
+            "Predicate": {
+              "$type": "RPG.GameCore.ByAllowInstantKill",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "TaskActionTarget"
+              }
+            },
+            "SuccessTaskList": [
+              {
+                "$type": "RPG.GameCore.AddMazeBuff",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "TaskActionTarget"
+                },
+                "ID": 140802
+              }
+            ]
+          },
+          {
+            "$type": "RPG.GameCore.TargetTimeSlow",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            },
+            "TimeScale": 0.10000000149011612,
+            "UnscaledDuration": 1.0,
+            "FadeInTime": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 0.30000001192092896
+              }
+            },
+            "SlowKey": "Phainon_00_MazeSkill"
+          }
+        ],
+        "OnTriggerExit": [
+          {
+            "$type": "RPG.GameCore.ClearTargetTimeSlow",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            },
+            "SlowKey": "Phainon_00_MazeSkill",
+            "FadeOut": false
+          },
+          {
+            "$type": "RPG.GameCore.RemoveMazeBuff",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            },
+            "ID": 140802
+          }
+        ]
+      },
+      {
+        "TriggerName": "PhainonFieldTrigger_Monster_TriggerHit",
+        "Radius": {
+          "IsDynamic": false,
+          "FixedValue": {
+            "Value": 9.0
+          }
+        },
+        "NeedRaycast": true,
+        "ForceSyncTargetToSever": true,
+        "TargetTypes": [
+          "NPCMonster"
+        ],
+        "ColliderRelativePath": "Trigger",
+        "OnTriggerEnter": [
+          {
+            "$type": "RPG.GameCore.PredicateTaskList",
+            "Predicate": {
+              "$type": "RPG.GameCore.AdvByIsEliteMonster",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "TaskActionTarget"
+              }
+            },
+            "SuccessTaskList": [
+              {
+                "$type": "RPG.GameCore.AddAdventureModifier",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "TaskActionTarget"
+                },
+                "ModifierName": "ADV_StageAbility_Maze_Phainon_00_Hit",
+                "LifeTime": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 2.0
+                  }
+                },
+                "Count": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 1.0
+                  }
+                }
+              }
+            ],
+            "FailedTaskList": [
+              {
+                "$type": "RPG.GameCore.AddAdventureModifier",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "TaskActionTarget"
+                },
+                "ModifierName": "ADV_StageAbility_Maze_Phainon_00_Confine",
+                "LifeTime": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 2.0
+                  }
+                },
+                "Count": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 1.0
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "TriggerName": "HitPropTrigger",
+        "Radius": {
+          "IsDynamic": false,
+          "FixedValue": {
+            "Value": 9.0
+          }
+        },
+        "UseVerticalBound": true,
+        "NeedRaycast": true,
+        "TargetTypes": [
+          "Prop"
+        ],
+        "TargetFilter": {
+          "$type": "RPG.GameCore.ByIsPropLockable",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ParamEntity"
+          }
+        },
+        "OnTriggerEnter": [
+          {
+            "$type": "RPG.GameCore.TriggerEffect",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            },
+            "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_Die.prefab",
+            "TowardTarget": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "Caster"
+            }
+          },
+          {
+            "$type": "RPG.GameCore.TriggerHitProp",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            },
+            "ClientMode": "PreShow"
+          }
+        ],
+        "OnTriggerExit": [],
+        "OnTriggerEnterRollback": [
+          {
+            "$type": "RPG.GameCore.PropDestructReset",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

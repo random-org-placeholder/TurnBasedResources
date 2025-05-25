@@ -4,17 +4,11 @@
     {
       "TaskList": [
         {
-          "$type": "RPG.GameCore.LevelLockFeature",
-          "LockFeatureType": "UISkill03"
-        },
-        {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
-        },
-        {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
-        },
-        {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "E",
+          "HideMunicipalCrowd": false,
+          "HideMunicipalPedestrian": false,
+          "UseNewStreamingSourceType": false
         },
         {
           "$type": "RPG.GameCore.AdvEntityFaceTo",
@@ -28,19 +22,140 @@
             ]
           },
           "EnableSteer": true
+        },
+        {
+          "$type": "RPG.GameCore.AdvEntityFaceTo",
+          "SourceType": {
+            "$type": "RPG.GameCore.GroupFetchLocalTarget",
+            "Targets": [
+              400001
+            ]
+          },
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchAdvLocalPlayer"
+          },
+          "EnableSteer": true
+        },
+        {
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TalkSentenceID": 200103101,
+              "ProtectTime": 0.30000001192092896
+            },
+            {
+              "TalkSentenceID": 200103102,
+              "ProtectTime": 0.30000001192092896
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.TriggerCustomString",
+          "CustomString": {
+            "Value": "Wait_Option_200100131_224"
+          }
         }
       ]
     },
     {
-      "IsLoop": true
+      "IsLoop": true,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "Wait_Option_200100131_224"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayOptionTalk",
+          "OptionList": [
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 200103103,
+              "OptionIconType": "ChatLoopIcon",
+              "TriggerCustomString": "TalkSentence_200103104"
+            },
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 200103108,
+              "OptionIconType": "ChatContinueIcon",
+              "TriggerCustomString": "TalkSentence_200103109"
+            }
+          ],
+          "HideSelected": true
+        }
+      ]
     },
     {
       "IsLoop": true,
-      "Order": 1
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "TalkSentence_200103104"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TalkSentenceID": 200103104,
+              "ProtectTime": 0.30000001192092896
+            },
+            {
+              "TalkSentenceID": 200103105,
+              "ProtectTime": 0.30000001192092896
+            },
+            {
+              "TalkSentenceID": 200103106,
+              "ProtectTime": 0.30000001192092896
+            },
+            {
+              "TalkSentenceID": 200103107,
+              "ProtectTime": 0.30000001192092896
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.TriggerCustomString",
+          "CustomString": {
+            "Value": "Wait_Option_200100131_224"
+          }
+        }
+      ]
     },
     {
-      "IsLoop": true
+      "IsLoop": true,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "TalkSentence_200103109"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TalkSentenceID": 200103109,
+              "ProtectTime": 0.30000001192092896
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.EndPerformance"
+        }
+      ]
     },
-    {}
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
+    }
   ]
 }

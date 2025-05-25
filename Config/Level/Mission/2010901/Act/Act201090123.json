@@ -3,43 +3,56 @@
     {
       "TaskList": [
         {
-          "$type": "RPG.GameCore.LevelLockFeature",
-          "LockFeatureType": "UISkill03"
-        },
-        {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "E",
+          "UseNewStreamingSourceType": false
         },
         {
           "$type": "RPG.GameCore.AdvNpcFaceToPlayer",
           "FinishImmadiate": true
         },
         {
-          "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
           "SimpleTalkList": [
             {
-              "TextSpeed": 3.6130444669928604e19,
-              "TalkBgID": 130436250
+              "TalkSentenceID": 201234960,
+              "ProtectTime": 0.30000001192092896
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.PlayOptionTalk",
+          "OptionList": [
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 201234961,
+              "OptionIconType": "ChatContinueIcon",
+              "TriggerCustomString": "ALL_TALK_END"
             }
           ]
         }
       ]
     },
     {
-      "IsLoop": true,
-      "Order": 1,
-      "TaskList": []
-    },
-    {
-      "IsLoop": true,
       "TaskList": [
         {
-          "$type": "RPG.GameCore.ActiveVirtualCamera",
-          "TaskEnabled": true,
-          "SelectFollowTargetType": "38"
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "ALL_TALK_END"
+          }
         },
         {
-          "$type": "RPG.GameCore.AdvChaseBailuSetDoor",
-          "Open": true
+          "$type": "RPG.GameCore.EndPerformance"
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
         }
       ]
     }

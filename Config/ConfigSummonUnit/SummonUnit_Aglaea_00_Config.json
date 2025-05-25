@@ -2,36 +2,181 @@
   "GroupConfigName": "FollowField",
   "ConfigEntityPath": "Config/ConfigEntity/SummonUnit/SummonUnit_Common_TeamField_Entity.json",
   "OnCreate": [
-    {}
+    {
+      "$type": "RPG.GameCore.DebugLog",
+      "Level": "Warn",
+      "Message": "=============OnCreate====================="
+    }
   ],
   "TriggerConfig": {
-    "SoundTrigger": {
-      "OnExitTriggerEvent": "=============OnCreate====================="
-    },
     "CustomTriggers": [
       {
-        "CenterOffset": {
-          "x": 1.3587455891409623e-18,
-          "y": 7.392987586018848e31,
-          "z": 238486752.0
-        }
-      },
-      {
-        "TriggerName": "sterTrigger\u0000�����\u0001\u0001\u0000\u0000`@\u0000\u0000��\u0001\u0001\u0002\n\u0001\u0007Trigger\u0002$&\u0005\u0001\u0010TaskActionTarget��\b\u0000�����}���a\u001aHitNpcMonsterTriggerEffect\u0000�����\u0001",
-        "DefaultEnable": true,
+        "TriggerName": "HitNpcMonsterTrigger",
         "Radius": {
           "IsDynamic": false,
           "FixedValue": {
-            "Value": 0.0
+            "Value": 4.0
           }
         },
-        "CenterOffset": {
-          "x": 2.3093398692072985e-41,
-          "y": 2.383095252059185e-38,
-          "z": 2319953952768.0
+        "UseVerticalBound": true,
+        "UpperBound": 3.5,
+        "LowerBound": -1.0,
+        "UseSummonerAsCheckSource": true,
+        "NeedRaycast": true,
+        "TargetTypes": [
+          "NPCMonster"
+        ],
+        "DontExitAfterEnter": true,
+        "ColliderRelativePath": "Trigger",
+        "OnTriggerEnter": [
+          {
+            "$type": "RPG.GameCore.AddMazeBuff",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            },
+            "ID": 140202,
+            "LifeTime": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 500.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "TriggerName": "HitNpcMonsterTriggerEffect",
+        "Radius": {
+          "IsDynamic": false,
+          "FixedValue": {
+            "Value": 4.0
+          }
         },
-        "UpperBound": 1.0928117802363479e24,
-        "LowerBound": 4.116176921754606e-28
+        "UseVerticalBound": true,
+        "UpperBound": 3.5,
+        "LowerBound": -1.0,
+        "UseSummonerAsCheckSource": true,
+        "NeedRaycast": true,
+        "TargetTypes": [
+          "NPCMonster"
+        ],
+        "ColliderRelativePath": "Trigger",
+        "OnTriggerEnter": [
+          {
+            "$type": "RPG.GameCore.AddAdventureModifier",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            },
+            "ModifierName": "ADV_StageAbility_Maze_Aglaea_Hit",
+            "Count": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 1.0
+              }
+            }
+          }
+        ],
+        "OnTriggerExit": [
+          {
+            "$type": "RPG.GameCore.RemoveAdventureModifier",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            },
+            "ModifierName": "ADV_StageAbility_Maze_Aglaea_Hit"
+          }
+        ]
+      },
+      {
+        "TriggerName": "HitPropTrigger",
+        "Radius": {
+          "IsDynamic": false,
+          "FixedValue": {
+            "Value": 4.0
+          }
+        },
+        "UseVerticalBound": true,
+        "UseSummonerAsCheckSource": true,
+        "NeedRaycast": true,
+        "TargetTypes": [
+          "Prop"
+        ],
+        "TargetFilter": {
+          "$type": "RPG.GameCore.ByIsPropLockable",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ParamEntity"
+          }
+        },
+        "DontExitAfterEnter": true,
+        "OnTriggerEnter": [
+          {
+            "$type": "RPG.GameCore.TriggerHitProp",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            },
+            "ClientMode": "PreShow"
+          },
+          {
+            "$type": "RPG.GameCore.TriggerEffect",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            },
+            "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Aglaea_00/Eff_Avatar_Aglaea_00_MazeSkill01_Hit01.prefab",
+            "AttachPoint": "SelectRoot"
+          }
+        ],
+        "OnTriggerExit": [],
+        "OnTriggerEnterRollback": [
+          {
+            "$type": "RPG.GameCore.PropDestructReset",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            }
+          }
+        ]
+      },
+      {
+        "TriggerName": "HitNPCTrigger",
+        "Radius": {
+          "IsDynamic": false,
+          "FixedValue": {
+            "Value": 4.0
+          }
+        },
+        "UseVerticalBound": true,
+        "UseSummonerAsCheckSource": true,
+        "NeedRaycast": true,
+        "TargetTypes": [
+          "NPC"
+        ],
+        "TargetFilter": {
+          "$type": "RPG.GameCore.ByTargetHitBoxActive",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ParamEntity"
+          }
+        },
+        "OnTriggerEnter": [
+          {
+            "$type": "RPG.GameCore.TriggerHitTarget",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            },
+            "HitConfig": {
+              "HitAnimation": "Hit",
+              "HitEffect": "Effects/Eff_Prefab/Eff_Avatar/Eff_Aglaea_00/Eff_Avatar_Aglaea_00_MazeSkill01_Hit01.prefab",
+              "HitEffectHeight": 1.0
+            }
+          }
+        ],
+        "OnTriggerExit": []
       }
     ]
   }

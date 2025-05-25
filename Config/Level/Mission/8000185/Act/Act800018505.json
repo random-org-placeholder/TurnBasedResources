@@ -4,27 +4,71 @@
     {
       "TaskList": [
         {
-          "$type": "RPG.GameCore.LevelLockFeature",
-          "LockFeatureType": "UISkill03"
-        },
-        {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
-        },
-        {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
-        },
-        {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "E",
+          "HideMunicipalCrowd": false,
+          "HideMunicipalPedestrian": false,
+          "UseNewStreamingSourceType": false
         },
         {
           "$type": "RPG.GameCore.AdvNpcFaceToPlayer",
           "GroupID": 148,
           "GroupNpcID": 400001
+        },
+        {
+          "$type": "RPG.GameCore.AdvEntityFaceTo",
+          "SourceType": {
+            "$type": "RPG.GameCore.TargetFetchAdvNpcEx",
+            "FetchType": "SingleNpcByNpcID",
+            "SingleNpcID": {
+              "GroupID": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 148.0
+                }
+              },
+              "GroupNpcID": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 400002.0
+                }
+              }
+            }
+          },
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchAdvLocalPlayer"
+          },
+          "EnableSteer": true,
+          "FinishImmediately": false
+        },
+        {
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TalkSentenceID": 801850502
+            },
+            {
+              "TalkSentenceID": 801850503
+            },
+            {
+              "TalkSentenceID": 801850504
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.EndPerformance"
         }
       ]
     },
     {
-      "IsLoop": true
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
     }
   ]
 }

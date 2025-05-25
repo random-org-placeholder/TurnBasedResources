@@ -4,33 +4,102 @@
     {
       "TaskList": [
         {
-          "$type": "RPG.GameCore.LevelLockFeature",
-          "LockFeatureType": "UISkill03"
-        },
-        {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
-        },
-        {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "E",
+          "HideMunicipalCrowd": false,
+          "HideMunicipalPedestrian": false
         },
         {
           "$type": "RPG.GameCore.AdvNpcFaceToPlayer",
           "NpcLookAtPlayer": false
+        },
+        {
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TextSpeed": 0.0,
+              "TalkSentenceID": 500080701,
+              "ProtectTime": 0.0
+            },
+            {
+              "TextSpeed": 0.0,
+              "TalkSentenceID": 500080702,
+              "ProtectTime": 0.0
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.PlayOptionTalk",
+          "OptionList": [
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 500080703,
+              "OptionIconType": "ChatContinueIcon",
+              "TriggerCustomString": "TalkSentence_500080704"
+            },
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 500080706,
+              "OptionIconType": "ChatOutIcon",
+              "TriggerCustomString": "ALL_TALK_END"
+            }
+          ]
         }
       ]
     },
     {
-      "Order": 1,
       "TaskList": [
         {
-          "$type": "RPG.GameCore.ActiveFarmElement"
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "TalkSentence_500080704"
+          }
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TextSpeed": 0.0,
+              "TalkSentenceID": 500080704,
+              "ProtectTime": 0.0
+            },
+            {
+              "TextSpeed": 0.0,
+              "TalkSentenceID": 500080705,
+              "ProtectTime": 0.0
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.TriggerCustomString",
+          "CustomString": {
+            "Value": "ALL_TALK_END"
+          }
         }
       ]
     },
-    {},
-    {}
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "ALL_TALK_END"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.EndPerformance"
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
+    }
   ]
 }

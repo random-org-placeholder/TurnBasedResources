@@ -4,20 +4,98 @@
     {
       "TaskList": [
         {
-          "$type": "RPG.GameCore.LevelLockFeature",
-          "LockFeatureType": "UISkill03"
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "E",
+          "CreateCharacterList": [],
+          "CaptureNPCList": [],
+          "EntityVisiableList": [],
+          "HideMunicipalCrowd": false,
+          "HideMunicipalPedestrian": false,
+          "PropVisiableList": [],
+          "StreamingSourcesInBlackMask": [],
+          "StreamingSourcesAfterBlackMask": [],
+          "MarkStreamingItems": [],
+          "AudioStateList": []
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.CollectionPlaySimpleTalk",
+          "TalkTemplate": {},
+          "TalkSentenceIdList": {
+            "Custom": true,
+            "Key": "SimpleTalkList",
+            "Value": []
+          }
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.TriggerGroupEvent",
+          "EventName": {
+            "Value": "Clt_TriggerPullOnly"
+          }
         }
       ]
     },
-    {},
-    {}
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGroupEvent",
+          "EventName": {
+            "Value": "Clt_FadeInReady"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.CollectionPlaySimpleTalk",
+              "TalkTemplate": {},
+              "TalkSentenceIdList": {
+                "Custom": true,
+                "Key": "SimpleTalkList02",
+                "Value": []
+              },
+              "KeepDisplay": false
+            },
+            {
+              "$type": "RPG.GameCore.TriggerGroupEvent",
+              "EventName": {
+                "Value": "Clt_TriggerClose"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.WaitGroupEvent",
+              "IsLoop": false,
+              "EventName": {
+                "Value": "Clt_FadeOutReady"
+              },
+              "OnEvent": [
+                {
+                  "$type": "RPG.GameCore.EndPerformance"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
+    }
   ],
-  "ValueSource": {},
+  "ValueSource": {
+    "Values": [
+      {
+        "$type": "RPG.GameCore.SharedString",
+        "Key": "SimpleTalkList"
+      },
+      {
+        "$type": "RPG.GameCore.SharedString",
+        "Key": "SimpleTalkList02"
+      }
+    ]
+  },
   "EntityEventList": []
 }

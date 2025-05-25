@@ -4,29 +4,203 @@
     {
       "TaskList": [
         {
-          "$type": "RPG.GameCore.LevelLockFeature",
-          "LockFeatureType": "UISkill03"
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "E",
+          "HideMunicipalCrowd": false,
+          "HideMunicipalPedestrian": false,
+          "UseNewStreamingSourceType": false
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.PlayFullScreenTransfer",
+          "Action": [
+            {
+              "$type": "RPG.GameCore.ScrTrfActPerformanceGroup",
+              "AdvCreateGroupEntity": {
+                "TaskEnabled": false
+              },
+              "AdvDestroyGroupEntity": {
+                "TaskEnabled": false
+              },
+              "CaptureNpc": [],
+              "SwitchCharacterAnchor": {
+                "IsLocalPlayer": true,
+                "CharacterUniqueName": "LocalPlayer",
+                "AreaName": {
+                  "Value": "LevelArea_P20241_F20241001_G172"
+                },
+                "AnchorName": {
+                  "Value": "Anchor3"
+                }
+              },
+              "ActiveVirtualCamera": {
+                "TaskEnabled": false
+              },
+              "ActiveTemplateVirtualCamera": {
+                "TaskEnabled": false
+              },
+              "AdvNpcFaceToPlayer": {
+                "TaskEnabled": false,
+                "SteerImmediately": true,
+                "FinishImmadiate": true
+              }
+            },
+            {
+              "$type": "RPG.GameCore.ScrTrfActTaskList",
+              "TaskList": [
+                {
+                  "$type": "RPG.GameCore.AdvEntityFaceTo",
+                  "SourceType": {
+                    "$type": "RPG.GameCore.TargetFetchAdvLocalPlayer"
+                  },
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetFetchAdvNpcEx",
+                    "FetchType": "SingleNpcByNpcID",
+                    "SingleNpcID": {
+                      "GroupID": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 172.0
+                        }
+                      },
+                      "GroupNpcID": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 400002.0
+                        }
+                      }
+                    }
+                  },
+                  "EnableSteer": true
+                },
+                {
+                  "$type": "RPG.GameCore.AdvEntityFaceTo",
+                  "SourceType": {
+                    "$type": "RPG.GameCore.TargetFetchAdvNpcEx",
+                    "FetchType": "SingleNpcByNpcID",
+                    "SingleNpcID": {
+                      "GroupID": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 172.0
+                        }
+                      },
+                      "GroupNpcID": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 400002.0
+                        }
+                      }
+                    }
+                  },
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetFetchAdvLocalPlayer"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TextSpeed": 0.0,
+              "TalkSentenceID": 434031301,
+              "ProtectTime": 0.0
+            }
+          ]
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.PlayOptionTalk",
+          "OptionList": [
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 434031302,
+              "OptionIconType": "ChatContinueIcon",
+              "TriggerCustomString": "ALL_TALK_END"
+            },
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 434031303,
+              "OptionIconType": "ChatOutIcon",
+              "TriggerCustomString": "ALL_TALK_END_NOTFINISH"
+            }
+          ]
         }
       ]
     },
     {
-      "IsLoop": false,
-      "Order": 2
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "ALL_TALK_END"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TextSpeed": 0.0,
+              "TalkSentenceID": 434031509,
+              "ProtectTime": 0.0
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.SetMissionCustomValue",
+          "SubmissionID": 434012404,
+          "MissionCustomValue": {
+            "Index": 1,
+            "Name": "OldValue_1",
+            "isLocal": true,
+            "ValidValueParamList": [
+              0,
+              1
+            ]
+          },
+          "CustomValue": 1
+        },
+        {
+          "$type": "RPG.GameCore.EndPerformance"
+        }
+      ]
     },
     {
-      "Order": -64
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
     },
     {
-      "IsLoop": false
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "ALL_TALK_END_NOTFINISH"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetMissionCustomValue",
+          "SubmissionID": 434012404,
+          "MissionCustomValue": {
+            "Index": 1,
+            "Name": "OldValue_1",
+            "isLocal": true,
+            "ValidValueParamList": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.EndPerformance"
+        }
+      ]
     }
   ]
 }

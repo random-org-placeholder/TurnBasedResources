@@ -4,19 +4,105 @@
     {
       "TaskList": [
         {
-          "$type": "RPG.GameCore.LevelLockFeature",
-          "LockFeatureType": "UISkill03"
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "E",
+          "CreateCharacterList": [],
+          "EntityVisiableList": [],
+          "HideMunicipalCrowd": false,
+          "HideMunicipalPedestrian": false,
+          "PropVisiableList": [],
+          "UseNewStreamingSourceType": false,
+          "MarkStreamingItems": []
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TalkSentenceID": 502124100,
+              "ProtectTime": 0.30000001192092896
+            },
+            {
+              "TalkSentenceID": 502124101,
+              "ProtectTime": 0.30000001192092896
+            }
+          ]
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.PlayOptionTalk",
+          "OptionList": [
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 502124102,
+              "OptionIconType": "ShopIcon",
+              "TriggerCustomString": "OpenShop"
+            },
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 502124103,
+              "OptionIconType": "ChatOutIcon",
+              "TriggerCustomString": "EndPerformance"
+            }
+          ]
         }
       ]
     },
-    {},
-    {},
-    {}
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "OpenShop"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.VerifyInteractingEntity",
+          "GroupID": 78,
+          "ConfigID": 400001
+        },
+        {
+          "$type": "RPG.GameCore.ShowShop",
+          "ShopType": 18,
+          "TaskID": []
+        },
+        {
+          "$type": "RPG.GameCore.TriggerCustomString",
+          "CustomString": {
+            "Value": "EndPerformance"
+          }
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "EndPerformance"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TalkSentenceID": 502124104
+            }
+          ],
+          "KeepDisplay": false
+        },
+        {
+          "$type": "RPG.GameCore.EndPerformance"
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
+    }
   ]
 }

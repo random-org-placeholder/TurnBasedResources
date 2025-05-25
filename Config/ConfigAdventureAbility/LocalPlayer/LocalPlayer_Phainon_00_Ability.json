@@ -1,0 +1,1147 @@
+{
+  "AbilityList": [
+    {
+      "Name": "LocalPlayer_Phainon_00_NormalAtk01",
+      "TargetInfo": {
+        "TargetType": "SkillPointEntityOrNone"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "Freelook3rdConfig": {
+              "DampChangeParam": {
+                "TargetValue": {
+                  "x": 1.0,
+                  "y": 1.0,
+                  "z": 1.0
+                },
+                "ChangeCurvePath": "Camera/BlendCurve/AttackDampCurve.asset",
+                "RecoveryTime": 0.25,
+                "RecoveryCurvePath": "Camera/BlendCurve/AttackDampRecoverCurve.asset"
+              }
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByHaveAbilityTarget"
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.LookAt",
+              "TargetType": "AbilityTargetEntity",
+              "Duration": 0.0
+            },
+            {
+              "$type": "RPG.GameCore.AdventureTriggerAnimStateWithMove",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AdvLocalPlayer"
+              },
+              "AnimLogicState": "NormalAtk",
+              "AnimStateName": "Attack_1",
+              "TransitionDuration": 0.03999999910593033,
+              "MovingRangeList": [
+                {
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AbilityTargetEntity"
+                  },
+                  "OffsetTargetDistance": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 2.5
+                    }
+                  },
+                  "NormalizedTimeStart": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0.0009999999310821295
+                    }
+                  },
+                  "NormalizedTimeEnd": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0.03500000014901161
+                    }
+                  },
+                  "MaxMoveDistance": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 5.0
+                    }
+                  },
+                  "MaxSpeed": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 300.0
+                    }
+                  },
+                  "SteerNormalizedTimeStart": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0.0009999999310821295
+                    }
+                  },
+                  "SteerNormalizedTimeEnd": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0.03500000014901161
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.WaitAnimState",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "AnimStateName": "Attack_1",
+              "NormalizedTimeEnd": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0.03500000014901161
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.RadialBlurEffect",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "Duration": 0.05000000074505806,
+              "BlurY": 0.4000000059604645,
+              "BlurRadius": 1.0,
+              "Iteration": 4,
+              "BlurStart": 0.004999999888241291,
+              "BlurFeather": 0.009999999776482582
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.AdventureByInMotionState",
+                "MotionFlag": "FastRun"
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.AdventureTriggerAnimStateWithMove",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "Caster"
+                  },
+                  "AnimLogicState": "NormalAtk",
+                  "AnimStateName": "Attack_1",
+                  "MovingRangeList": [
+                    {
+                      "NormalizedTimeStart": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0.0009999999310821295
+                        }
+                      },
+                      "NormalizedTimeEnd": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0.03500000014901161
+                        }
+                      },
+                      "DefaultMoveDistance": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 2.0
+                        }
+                      }
+                    }
+                  ]
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.AdventureByInMotionState",
+                    "MotionFlag": "Run"
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.AdventureTriggerAnimStateWithMove",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "Caster"
+                      },
+                      "AnimLogicState": "NormalAtk",
+                      "AnimStateName": "Attack_1",
+                      "MovingRangeList": [
+                        {
+                          "NormalizedTimeStart": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 0.0009999999310821295
+                            }
+                          },
+                          "NormalizedTimeEnd": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 0.03500000014901161
+                            }
+                          },
+                          "DefaultMoveDistance": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 1.5
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.AdventureTriggerAnimStateWithMove",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "AdvLocalPlayer"
+                      },
+                      "AnimLogicState": "NormalAtk",
+                      "AnimStateName": "Attack_1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.WaitAnimState",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "AnimStateName": "Attack_1",
+              "NormalizedTimeEnd": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0.03500000014901161
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AnimStateName": "Attack_1",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.06400000303983688
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AdventureTriggerAttack",
+          "TriggerBattleDelay": 0.10000000149011612,
+          "AttackDetectConfig": {
+            "$type": "RPG.GameCore.AdventureAttackDetectCircleConfig",
+            "Offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": -0.5
+            },
+            "MaxRadius": 3.0,
+            "FanAngle": 180.0
+          },
+          "HitConfig": {
+            "HitAnimation": "Hit",
+            "HitEffect": "Effects/Eff_Prefab/Eff_Avatar/Eff_Phainon_00/Eff_Avatar_Phainon_00_MazeAttack_Hit.prefab"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "ShakeTemplateName": "LocalPlayer_Seele_NormalAttack_OnTarget"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AnimStateName": "Attack_1",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.15399999916553497
+            }
+          }
+        }
+      ],
+      "OnAbort": [
+        {
+          "$type": "RPG.GameCore.RadialBlurEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "Active": false
+        }
+      ]
+    },
+    {
+      "Name": "LocalPlayer_Phainon_00_MazeSkill",
+      "TargetInfo": {
+        "TargetType": "SkillPointEntityOrNone"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.LockCamera",
+          "LockAxisX": false,
+          "LockZoom": true
+        },
+        {
+          "$type": "RPG.GameCore.GlobalMainIntensityEffect",
+          "TargetIntensity": 0.30000001192092896,
+          "FadeDuration": 0.10000000149011612
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByHaveAbilityTarget"
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.LookAt",
+              "TargetType": "AbilityTargetEntity",
+              "Duration": 0.0
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.CreateSummonUnit",
+          "SummonUnitID": 14082,
+          "PosTarget": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "Distance": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 8.0
+            }
+          },
+          "Duration": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 2.0
+            }
+          },
+          "ForbidSkillMsg": true
+        },
+        {
+          "$type": "RPG.GameCore.AddAdventureModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": "ADV_StageAbility_Maze_Phainon_Invincible",
+          "LifeTime": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 2.0
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "ShakeTemplateName": "2.4LevelShake",
+            "OverrideShakeConfigV2": {
+              "ShakeScale": 3.0,
+              "ShakeTime": 1.0
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.RadialBlurEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchSummonUnit",
+            "Summoner": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "Caster"
+            },
+            "SummonUnitID": 14082
+          },
+          "BlurRadius": 1.0,
+          "Iteration": 4,
+          "BlurStart": 0.30000001192092896,
+          "BlurFeather": 0.30000001192092896
+        },
+        {
+          "$type": "RPG.GameCore.AdventureTriggerAnimStateWithMove",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvLocalPlayer"
+          },
+          "AnimLogicState": "MazeSkill",
+          "AnimStateName": "MazeSkill",
+          "StopWhenHitOthers": false
+        },
+        {
+          "$type": "RPG.GameCore.AdventureTriggerMoveApplyRunSpeed",
+          "MoveEntityType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvLocalPlayer"
+          },
+          "MaxDuration": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.4000000059604645
+            }
+          },
+          "MaxSpeed": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 8.0
+            }
+          },
+          "MinSpeed": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.0
+            }
+          },
+          "SpeedCurve": "Camera/BlendCurve/BlendCut_1310_MazeSkill_End_Speed.asset",
+          "MaxSteerSpeed": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.0
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "Freelook3rdConfig": {
+              "FOVChangeParam": {
+                "TargetValue": 51.0,
+                "Time": 1.75,
+                "ChangeCurvePath": "Camera/BlendCurve/BlendCut_1408_MazeSkill.asset",
+                "RecoveryTime": 1.5,
+                "RecoveryCurvePath": "Camera/BlendCurve/Blend_EasyInOut_ChallengStory.asset"
+              },
+              "ZoomChangeParam": {
+                "TargetValue": 0.5,
+                "Time": 1.75,
+                "ChangeCurvePath": "Camera/BlendCurve/BlendCut_1408_MazeSkill.asset",
+                "RecoveryTime": 1.5,
+                "RecoveryCurvePath": "Camera/BlendCurve/Blend_EasyInOut_ChallengStory.asset"
+              },
+              "AxisYChangeParam": {
+                "TargetValue": 0.44999998807907104,
+                "Time": 1.75,
+                "ChangeCurvePath": "Camera/BlendCurve/BlendCut_1408_MazeSkill.asset",
+                "RecoveryTime": 1.5,
+                "RecoveryCurvePath": "Camera/BlendCurve/Blend_EasyInOut_ChallengStory.asset"
+              },
+              "LookAtOffsetChangeParam": {
+                "TargetValue": {
+                  "x": -1.0,
+                  "y": 0.800000011920929,
+                  "z": 0.0
+                },
+                "Time": 1.75,
+                "ChangeCurvePath": "Camera/BlendCurve/BlendCut_1408_MazeSkill.asset",
+                "RecoveryTime": 1.5,
+                "RecoveryCurvePath": "Camera/BlendCurve/Blend_EasyInOut_ChallengStory.asset"
+              }
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AnimStateName": "MazeSkill",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.2370000034570694
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.RPGColorGradingCurveEffect",
+          "CustomLUT": "Effects/Eff_Texture/Avatar/Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_LUT.exr",
+          "TransitionDuration": 0.05000000074505806,
+          "CustomLUTIntensityBegin": 1.0,
+          "CustomLUTIntensityEnd": 1.0,
+          "StartRadiusBegin": 0.20000000298023224,
+          "StartRadiusEnd": 1.0,
+          "BlendRadiusBegin": -0.47999998927116394,
+          "BlendRadiusEnd": -0.47999998927116394,
+          "CurveName": "ColorGradingCurveHQ"
+        },
+        {
+          "$type": "RPG.GameCore.RadialBlurEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchSummonUnit",
+            "Summoner": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "Caster"
+            },
+            "SummonUnitID": 14082
+          },
+          "Duration": 0.20000000298023224,
+          "BlurY": 0.4000000059604645,
+          "BlurRadius": 1.0,
+          "Iteration": 4,
+          "BlurStart": 0.004999999888241291,
+          "BlurFeather": 0.009999999776482582
+        },
+        {
+          "$type": "RPG.GameCore.AdventureTriggerAttack",
+          "AttackTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllEnemy"
+          },
+          "TriggerBattleDelay": 0.10000000149011612,
+          "SummonUnitTriggerAttackDetectConfig": {
+            "SummonUnitID": 14082,
+            "DetectSummonUnitTriggerName": "PhainonFieldTrigger_Monster"
+          },
+          "AttackDetectConfig": {
+            "$type": "RPG.GameCore.AdventureAttackDetectCircleConfig",
+            "Offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 4.0
+            },
+            "MaxRadius": 4.0,
+            "FanAngle": 360.0,
+            "Hight": 2.0
+          },
+          "HitConfig": {
+            "HitAnimation": "Hit"
+          },
+          "OnAttack": [
+            {
+              "$type": "RPG.GameCore.TriggerEffect",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ParamEntity"
+              },
+              "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_Sword_Hit.prefab"
+            },
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByAllowInstantKill",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "ParamEntity"
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.AdventureSetAttackTargetMonsterDie",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ParamEntity"
+                  },
+                  "DyingStyleParam": {
+                    "DyingStyle": "Freeze",
+                    "FreezeDuration": 0.5
+                  }
+                }
+              ]
+            }
+          ],
+          "OnBattle": [
+            {
+              "$type": "RPG.GameCore.AddMazeBuff",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ParamEntity"
+              },
+              "ID": 140801,
+              "LifeTime": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1.0
+                }
+              }
+            }
+          ],
+          "EnterBattleSelectTargetType": "AllHitTarget"
+        },
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "ShakeTemplateName": "Impact_Heavier",
+            "OverrideShakeConfigV2": {
+              "ShakeScale": 1.5,
+              "ShakeTime": 0.6000000238418579,
+              "ShakeDir": {
+                "x": 0.0,
+                "y": 0.6000000238418579,
+                "z": 0.30000001192092896
+              }
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetSummonUnitTriggerEnable",
+          "SummonUnit": {
+            "$type": "RPG.GameCore.TargetFetchSummonUnit",
+            "Summoner": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "Caster"
+            },
+            "SummonUnitID": 14082
+          },
+          "TriggerNames": [
+            "PhainonFieldTrigger_Monster",
+            "PhainonFieldTrigger_Monster_TriggerHit",
+            "HitPropTrigger"
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchSummonUnit",
+            "Summoner": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "Caster"
+            },
+            "SummonUnitID": 14082
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_Mask02.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AnimStateName": "MazeSkill",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.25200000405311584
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.RemoveAdventureModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": "ADV_StageAbility_Maze_Phainon_Invincible"
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AnimStateName": "MazeSkill",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.2800000011920929
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.GlobalMainIntensityEffect",
+          "IsRevert": true,
+          "FadeDuration": 1.0
+        },
+        {
+          "$type": "RPG.GameCore.RPGColorGradingCurveEffect",
+          "Active": false,
+          "CustomLUT": "Effects/Eff_Texture/Avatar/Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_LUT.exr",
+          "TransitionDuration": 1.0,
+          "CurveName": "ColorGradingCurveHQ"
+        }
+      ],
+      "OnAbort": [
+        {
+          "$type": "RPG.GameCore.GlobalMainIntensityEffect",
+          "IsRevert": true,
+          "FadeDuration": 1.0
+        },
+        {
+          "$type": "RPG.GameCore.RadialBlurEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchSummonUnit",
+            "Summoner": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "Caster"
+            },
+            "SummonUnitID": 14082
+          },
+          "Active": false
+        },
+        {
+          "$type": "RPG.GameCore.RPGColorGradingCurveEffect",
+          "Active": false,
+          "CustomLUT": "Effects/Eff_Texture/Avatar/Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_LUT.exr",
+          "TransitionDuration": 0.05000000074505806,
+          "CurveName": "ColorGradingCurveHQ"
+        },
+        {
+          "$type": "RPG.GameCore.UnLockCamera"
+        },
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "Freelook3rdConfig": {
+              "FOVChangeParam": {
+                "TargetValue": 45.0,
+                "Time": 1.0,
+                "ChangeCurvePath": "Camera/BlendCurve/Blend_EasyInOut_ChallengStory.asset",
+                "RecoveryTime": 999.0
+              },
+              "ZoomChangeParam": {
+                "TargetValue": 0.5,
+                "Time": 1.0,
+                "ChangeCurvePath": "Camera/BlendCurve/Blend_EasyInOut_ChallengStory.asset",
+                "RecoveryTime": 999.0
+              },
+              "AxisYChangeParam": {
+                "TargetValue": 0.5,
+                "Time": 1.0,
+                "ChangeCurvePath": "Camera/BlendCurve/Blend_EasyInOut_ChallengStory.asset"
+              },
+              "LookAtOffsetChangeParam": {
+                "Time": 1.0,
+                "ChangeCurvePath": "Camera/BlendCurve/Blend_EasyInOut_ChallengStory.asset",
+                "RecoveryTime": 999.0
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Name": "LocalPlayer_Phainon_00_SummonUnit",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AddAdventureModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": "ADV_StageAbility_Maze_Phainon_00_Trigger",
+          "Count": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": -1.0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Name": "LocalPlayer_Phainon_00_ModifyMaxMP",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AddAdventureModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": "ADV_StageAbility_Maze_Phainon_00_ModifyMaxMP",
+          "Count": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": -1.0
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "GlobalModifiers": {
+    "ADV_StageAbility_Maze_Phainon_00": {
+      "Count": 1,
+      "Stacking": "Merge",
+      "BehaviorFlagList": [
+        "TimeLock"
+      ],
+      "OnCreate": [
+        {
+          "$type": "RPG.GameCore.ModifierAttachEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ModifierOwnerEntity"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Common/Eff_Common_MAZ_Immobilize.prefab",
+          "MinMutexTime": -1.0,
+          "MutexType": "Entity"
+        },
+        {
+          "$type": "RPG.GameCore.ModifierAttachEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ModifierOwnerEntity"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Common/Eff_Common_MAZ_Immobilize_01.prefab",
+          "MinMutexTime": -1.0,
+          "MutexType": "Entity"
+        }
+      ]
+    },
+    "ADV_StageAbility_Maze_Phainon_Invincible": {
+      "Count": 1,
+      "Stacking": "Refresh",
+      "LifeTime": 2.0,
+      "BehaviorFlagList": [
+        "HolyShield"
+      ],
+      "OnUnstage": [
+        {
+          "$type": "RPG.GameCore.RemoveSelfModifier"
+        }
+      ]
+    },
+    "ADV_StageAbility_Maze_Phainon_00_Trigger": {
+      "Stacking": "Refresh",
+      "OnCreate": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByIsTeamLeader",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "ModifierOwnerEntity"
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.CreateSummonUnit",
+              "SummonUnitID": 14081,
+              "AttachTarget": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "PosTarget": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              }
+            }
+          ]
+        }
+      ],
+      "OnDestroy": [
+        {
+          "$type": "RPG.GameCore.DestroySummonUnit",
+          "SummonUnit": {
+            "$type": "RPG.GameCore.TargetFetchSummonUnit",
+            "Summoner": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "Caster"
+            },
+            "SummonUnitID": 14081
+          }
+        }
+      ],
+      "OnStage": [
+        {
+          "$type": "RPG.GameCore.CreateSummonUnit",
+          "SummonUnitID": 14081,
+          "AttachTarget": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "PosTarget": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          }
+        }
+      ],
+      "OnUnstage": [
+        {
+          "$type": "RPG.GameCore.DestroySummonUnit",
+          "SummonUnit": {
+            "$type": "RPG.GameCore.TargetFetchSummonUnit",
+            "Summoner": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "AdvLocalPlayer"
+            },
+            "SummonUnitID": 14081
+          }
+        }
+      ]
+    },
+    "ADV_StageAbility_Maze_Phainon_00_ModifyMaxMP": {
+      "Stacking": "Refresh",
+      "OnCreate": [
+        {
+          "$type": "RPG.GameCore.AdvModifyMaxMazeMP",
+          "ModifyFunction": "Add",
+          "ModifyValue": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 3.0
+            }
+          }
+        }
+      ],
+      "OnDestroy": [
+        {
+          "$type": "RPG.GameCore.AdvModifyMaxMazeMP",
+          "ModifyFunction": "Add",
+          "ModifyValue": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": -3.0
+            }
+          }
+        }
+      ]
+    },
+    "ADV_StageAbility_Maze_Phainon_00_KillFlag": {
+      "Count": 1,
+      "Stacking": "Merge",
+      "BehaviorFlagList": [
+        "NoAlert"
+      ],
+      "OnDestroy": [
+        {
+          "$type": "RPG.GameCore.RemoveEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_Icon.prefab"
+        }
+      ],
+      "OnStack": [
+        {
+          "$type": "RPG.GameCore.ModifierAttachEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ModifierOwnerEntity"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_Icon.prefab",
+          "AttachPoint": "HeadPoint",
+          "PositionOffset": {
+            "x": 0.0,
+            "y": 0.10000000149011612,
+            "z": 0.0
+          },
+          "MinMutexTime": -1.0,
+          "MutexType": "Entity"
+        }
+      ]
+    },
+    "ADV_StageAbility_Maze_Phainon_00_Hit": {
+      "Count": 1,
+      "Stacking": "Replace",
+      "OnDestroy": [
+        {
+          "$type": "RPG.GameCore.RemoveEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ModifierOwnerEntity"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_VertexCollapse02.prefab"
+        }
+      ],
+      "OnStack": [
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ModifierOwnerEntity"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_VertexCollapse02.prefab",
+          "ParamEntityUsage": "VertexCollaspe",
+          "TowardTarget": {
+            "$type": "RPG.GameCore.TargetFetchSummonUnit",
+            "Summoner": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "AdvLocalPlayer"
+            },
+            "SummonUnitID": 14082
+          },
+          "MinMutexTime": -1.0,
+          "MinMutexType": "Entity"
+        },
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ModifierOwnerEntity"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_Die.prefab",
+          "TowardTarget": {
+            "$type": "RPG.GameCore.TargetFetchSummonUnit",
+            "Summoner": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "AdvLocalPlayer"
+            },
+            "SummonUnitID": 14082
+          }
+        },
+        {
+          "$type": "RPG.GameCore.ClearTargetTimeSlow",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ModifierOwnerEntity"
+          },
+          "SlowKey": "Phainon_00_MazeSkill",
+          "FadeOut": false
+        },
+        {
+          "$type": "RPG.GameCore.AdventureTriggerAnimStateWithMove",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ModifierOwnerEntity"
+          },
+          "AnimLogicState": "OnHit",
+          "AnimStateName": "Hit",
+          "TransitionDuration": 0.0,
+          "MovingRangeList": []
+        }
+      ]
+    },
+    "ADV_StageAbility_Maze_Phainon_00_Confine": {
+      "Count": 1,
+      "Stacking": "Replace",
+      "BehaviorFlagList": [
+        "Confine"
+      ],
+      "OnDestroy": [
+        {
+          "$type": "RPG.GameCore.RemoveEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ModifierOwnerEntity"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_VertexCollapse.prefab"
+        }
+      ],
+      "OnStack": [
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ModifierOwnerEntity"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_VertexCollapse.prefab",
+          "ParamEntityUsage": "VertexCollaspe",
+          "TowardTarget": {
+            "$type": "RPG.GameCore.TargetFetchSummonUnit",
+            "Summoner": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "AdvLocalPlayer"
+            },
+            "SummonUnitID": 14082
+          },
+          "MinMutexTime": -1.0,
+          "MinMutexType": "Entity"
+        },
+        {
+          "$type": "RPG.GameCore.RemoveEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ModifierOwnerEntity"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_Icon.prefab",
+          "IsNeedFadeOut": false
+        },
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ModifierOwnerEntity"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Phainon_00/Eff_Avatar_Phainon_00_MazeSkill01_Die.prefab",
+          "TowardTarget": {
+            "$type": "RPG.GameCore.TargetFetchSummonUnit",
+            "Summoner": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "AdvLocalPlayer"
+            },
+            "SummonUnitID": 14082
+          }
+        }
+      ],
+      "OnModifierAdd": [
+        {
+          "$type": "RPG.GameCore.AdvSetConfineFeatureParam",
+          "FloatHeight": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 5.599999904632568
+            }
+          },
+          "FloatRange": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.0
+            }
+          },
+          "FloatPeriod": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 5.0
+            }
+          },
+          "FloatTransitionTime": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.800000011920929
+            }
+          },
+          "DisableMonsterSelect": true,
+          "DisableMonsterCable": true,
+          "RotationAngleSpeed": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "RotationAngleSpeedDamp": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.0
+            }
+          },
+          "RotationTransitionOut": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.0
+            }
+          },
+          "ScaleCharacterModel": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.800000011920929
+            }
+          }
+        }
+      ]
+    }
+  }
+}

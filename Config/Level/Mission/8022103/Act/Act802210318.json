@@ -4,27 +4,93 @@
     {
       "TaskList": [
         {
-          "$type": "RPG.GameCore.LevelLockFeature",
-          "LockFeatureType": "UISkill03"
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "E",
+          "HideMunicipalCrowd": false,
+          "HideMunicipalPedestrian": false,
+          "UseNewStreamingSourceType": false
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.AdvNpcFaceToPlayer"
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TextSpeed": 0.0,
+              "TalkSentenceID": 802212101,
+              "ProtectTime": 0.0
+            }
+          ]
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.PlayOptionTalk",
+          "OptionList": [
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 802212102,
+              "OptionIconType": "GeneralActivityIcon",
+              "TriggerCustomString": "TalkSentence_802212102"
+            },
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 802212103,
+              "OptionIconType": "ChatOutIcon",
+              "TriggerCustomString": "TalkSentence_802212104"
+            }
+          ]
         }
       ]
     },
-    {},
-    {},
     {
-      "Order": 1,
       "TaskList": [
         {
-          "$type": "RPG.GameCore.ActiveFarmElement"
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "TalkSentence_802212104"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TextSpeed": 0.0,
+              "TalkSentenceID": 802212104,
+              "ProtectTime": 0.0
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.EndPerformance"
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "TalkSentence_802212102"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerGroupEventOnDialogEnd",
+          "EventName": {
+            "Value": "ActivitMovie_OpenUI"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.EndPerformance"
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
         }
       ]
     }

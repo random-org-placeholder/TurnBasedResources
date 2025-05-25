@@ -1,0 +1,70 @@
+{
+  "GroupConfigName": "FollowField",
+  "ConfigEntityPath": "Config/ConfigEntity/SummonUnit/SummonUnit_Common_TeamField_Entity.json",
+  "ResidentEffects": [
+    {
+      "$type": "RPG.GameCore.TriggerEffect",
+      "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Cipher_00/Eff_Avatar_Cipher_00_MazeSkill02_Weapon_01_Loop.prefab",
+      "UniqueEffectName": "Cipher_Maze_Mag",
+      "PositionOffset": {
+        "x": 0.0,
+        "y": 0.6399999856948853,
+        "z": 0.0
+      }
+    }
+  ],
+  "AttachPoint": "Head",
+  "OnCreate": [],
+  "OnBeReplaced": [],
+  "TriggerConfig": {
+    "CustomTriggers": [
+      {
+        "TriggerName": "AttractNpcMonsterTrigger",
+        "Radius": {
+          "IsDynamic": false,
+          "FixedValue": {
+            "Value": 20.0
+          }
+        },
+        "UseVerticalBound": true,
+        "NeedRaycast": true,
+        "TargetTypes": [
+          "NPCMonster"
+        ],
+        "OnTriggerEnter": [
+          {
+            "$type": "RPG.GameCore.PredicateTaskList",
+            "Predicate": {
+              "$type": "RPG.GameCore.ByIsContainAdventureModifier",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "TaskActionTarget"
+              },
+              "ModifierName": "ADV_StageAbility_Maze_Cipher_00_Mark_Stolen"
+            },
+            "FailedTaskList": [
+              {
+                "$type": "RPG.GameCore.AddAdventureModifier",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "TaskActionTarget"
+                },
+                "ModifierName": "ADV_StageAbility_Maze_Cipher_00_Mark"
+              }
+            ]
+          }
+        ],
+        "OnTriggerExit": [
+          {
+            "$type": "RPG.GameCore.RemoveAdventureModifier",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            },
+            "ModifierName": "ADV_StageAbility_Maze_Cipher_00_Mark"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -4,23 +4,85 @@
     {
       "TaskList": [
         {
-          "$type": "RPG.GameCore.LevelLockFeature",
-          "LockFeatureType": "UISkill03"
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "E",
+          "HideMunicipalCrowd": false,
+          "HideMunicipalPedestrian": false,
+          "UseNewStreamingSourceType": false
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.PlayFullScreenTransfer",
+          "Action": [
+            {
+              "$type": "RPG.GameCore.ScrTrfActTaskList",
+              "TaskList": [
+                {
+                  "$type": "RPG.GameCore.AdvNpcFaceToPlayer",
+                  "TurnBackOnGraphEnd": false
+                },
+                {
+                  "$type": "RPG.GameCore.AdvEntityFaceTo",
+                  "SourceType": {
+                    "$type": "RPG.GameCore.TargetFetchAdvNpcEx",
+                    "FetchType": "SingleNpcByNpcID",
+                    "SingleNpcID": {
+                      "GroupID": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 13.0
+                        }
+                      },
+                      "GroupNpcID": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 400045.0
+                        }
+                      }
+                    }
+                  },
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetFetchAdvLocalPlayer"
+                  },
+                  "EnableSteer": true,
+                  "FinishImmediately": false,
+                  "ForceToStandBy": true,
+                  "TurnBackOnGraphEnd": false
+                }
+              ]
+            }
+          ]
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TalkSentenceID": 814122301
+            },
+            {
+              "TalkSentenceID": 814122302
+            },
+            {
+              "TalkSentenceID": 814122303
+            },
+            {
+              "TalkSentenceID": 814122304
+            }
+          ]
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.EndPerformance"
         }
       ]
     },
     {
-      "IsLoop": false,
-      "Order": 1
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
     }
   ]
 }

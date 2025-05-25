@@ -4,16 +4,155 @@
     {
       "TaskList": [
         {
-          "TaskEnabled": true
+          "$type": "RPG.GameCore.CollectDataConditions",
+          "TaskIDList": [
+            401590301
+          ],
+          "MainMissionIDList": [],
+          "PerformanceIDList": [],
+          "PerformanceIDDsList": [],
+          "CustomValueMainMissionIDList": []
         },
-        {},
         {
-          "TaskEnabled": false
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "E",
+          "HideMunicipalCrowd": false,
+          "HideMunicipalPedestrian": false
         },
-        {},
-        {}
+        {
+          "$type": "RPG.GameCore.AdvNpcFaceToPlayer"
+        },
+        {
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TextSpeed": 0.0,
+              "TalkSentenceID": 401590701,
+              "ProtectTime": 0.0
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareSubMissionState",
+            "SubMissionID": 401590301,
+            "SubMissionState": "Finish"
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.AddFinishMissionData_ConsumeItem",
+              "SubmissionID": 401590302,
+              "SimpleTalk": {},
+              "OnSubmitConfirm": [
+                {
+                  "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+                  "SimpleTalkList": [
+                    {
+                      "TextSpeed": 0.0,
+                      "TalkSentenceID": 401590702,
+                      "ProtectTime": 0.0
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.PlayFullScreenTransfer",
+                  "PrevDuration": 0.0,
+                  "TextInfo": {
+                    "TextList": [
+                      {
+                        "TalkSentenceID": 401590703
+                      }
+                    ]
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.SetMissionCustomValue",
+                  "SubmissionID": 401590302,
+                  "MissionCustomValue": {
+                    "Name": "OldValue_0",
+                    "ValidValueParamList": [
+                      0,
+                      1,
+                      2
+                    ]
+                  },
+                  "CustomValue": 1
+                },
+                {
+                  "$type": "RPG.GameCore.EndPerformance"
+                }
+              ],
+              "OnSubmitCancel": [
+                {
+                  "$type": "RPG.GameCore.EndPerformance"
+                }
+              ]
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.AddFinishMissionData_ConsumeItem",
+              "SubmissionID": 401590301,
+              "SimpleTalk": {},
+              "OnSubmitConfirm": [
+                {
+                  "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+                  "SimpleTalkList": [
+                    {
+                      "TextSpeed": 0.0,
+                      "TalkSentenceID": 401590702,
+                      "ProtectTime": 0.0
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.PlayFullScreenTransfer",
+                  "PrevDuration": 0.0,
+                  "TextInfo": {
+                    "TextList": [
+                      {
+                        "TalkSentenceID": 401590703
+                      }
+                    ]
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.SetMissionCustomValue",
+                  "SubmissionID": 401590301,
+                  "MissionCustomValue": {
+                    "Name": "OldValue_0",
+                    "ValidValueParamList": [
+                      0,
+                      1,
+                      2
+                    ]
+                  },
+                  "CustomValue": 2
+                },
+                {
+                  "$type": "RPG.GameCore.EndPerformance"
+                }
+              ],
+              "OnSubmitCancel": [
+                {
+                  "$type": "RPG.GameCore.EndPerformance"
+                }
+              ]
+            }
+          ]
+        }
       ]
     },
-    {}
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
+    }
   ]
 }

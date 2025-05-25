@@ -1,0 +1,98 @@
+{
+  "OnInitSequece": [],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "E",
+          "CreateCharacterList": [],
+          "CaptureNPCList": [],
+          "EntityVisiableList": [],
+          "HideMunicipalCrowd": false,
+          "HideMunicipalPedestrian": false,
+          "PropVisiableList": [],
+          "StreamingSourcesInBlackMask": [],
+          "StreamingSourcesAfterBlackMask": [],
+          "MarkStreamingItems": [],
+          "AudioStateList": []
+        },
+        {
+          "$type": "RPG.GameCore.CollectionPlaySimpleTalk",
+          "TalkTemplate": {},
+          "TalkSentenceIdList": {
+            "Custom": true,
+            "Key": "SimpleTalkList",
+            "Value": []
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerGroupEvent",
+          "EventName": {
+            "Value": "Clt_TriggerPullOnly"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitGroupEvent",
+          "IsLoop": false,
+          "EventName": {
+            "Value": "Clt_FadeInReady"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.CollectionPlaySimpleTalk",
+              "TalkTemplate": {},
+              "TalkSentenceIdList": {
+                "Custom": true,
+                "Key": "SimpleTalkList02",
+                "Value": []
+              },
+              "KeepDisplay": false
+            },
+            {
+              "$type": "RPG.GameCore.TriggerGroupEvent",
+              "EventName": {
+                "Value": "Clt_TriggerOpen"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.WaitGroupEvent",
+              "IsLoop": false,
+              "EventName": {
+                "Value": "Clt_FadeOutReady"
+              },
+              "OnEvent": [
+                {
+                  "$type": "RPG.GameCore.EndPerformance"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
+    }
+  ],
+  "ValueSource": {
+    "Values": [
+      {
+        "$type": "RPG.GameCore.SharedString",
+        "Key": "SimpleTalkList"
+      },
+      {
+        "$type": "RPG.GameCore.SharedString",
+        "Key": "SimpleTalkList02"
+      }
+    ]
+  },
+  "EntityEventList": []
+}

@@ -24,20 +24,37 @@
               "Event": "OnListenModifierRemove",
               "CallbackConfig": [
                 {
-                  "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode",
-                  "TaskEnabled": true,
-                  "Enable": true,
-                  "OverrideInitBlendTime": 5.787437170265301e22,
-                  "LongEnterBattleCameraDistance": 1.6750119566725612e19,
-                  "SpecialBeHitConfig": {
-                    "MiddleShotDistance": 4.841462298831706e30,
-                    "LongShotDistance": 234276592.0
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCheckModifierCallBackName",
+                    "ModifierName": "Death_Control_Modifier"
                   },
-                  "AimScreenOffset": {
-                    "x": 2.7554101582723412e23,
-                    "y": 1.7808455343732968e-37
-                  },
-                  "CustomShotAimDir": "19"
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.AddModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "ModifierName": {
+                        "Value": "MCommon_CriticalChanceUp"
+                      },
+                      "LifeTime": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 1.0
+                        }
+                      },
+                      "DynamicValues": {
+                        "MDF_PropertyValue": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 0.5
+                          }
+                        }
+                      }
+                    }
+                  ]
                 }
               ]
             }

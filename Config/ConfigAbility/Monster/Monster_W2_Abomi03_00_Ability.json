@@ -1,0 +1,1613 @@
+{
+  "AbilityList": [
+    {
+      "Name": "Monster_W2_Abomi03_00_Skill01_Phase01",
+      "TargetInfo": {
+        "TargetType": "AllEnemy"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.TriggerAbility",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AbilityName": {
+            "Value": "Monster_W2_Abomi03_00_Skill01_Phase02"
+          },
+          "IsSkillPerform": true
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAbility",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AbilityName": {
+            "Value": "Monster_W2_Abomi03_00_Skill01_Camera"
+          },
+          "IsSkillPerform": true
+        },
+        {
+          "$type": "RPG.GameCore.SetTeamFormation",
+          "Team": "TeamLight",
+          "FormationType": "LightTeamNormal",
+          "ServantState": "DefaultFollow",
+          "CustomFormationIgnoreDying": false
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAnimStateWithMove",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AnimStateName": "Skill01",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.8849999904632568
+            }
+          },
+          "NormalizedTransitionDuration": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.15000000596046448
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAnimState",
+          "AnimLogicState": "Idle",
+          "NormalizedTransitionDuration": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.25
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Monster_W2_Abomi03_00_Skill01_Phase02",
+      "TargetInfo": {
+        "TargetType": "AllEnemy"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AnimStateName": "Skill01",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.05000000074505806
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SkillExecutionStart"
+        },
+        {
+          "$type": "RPG.GameCore.Retarget",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "TauntOrRandomEnemy"
+          },
+          "ByRandom": true,
+          "MaxNumber": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1.0
+            }
+          },
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.WaitAnimState",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "AnimStateName": "Skill01",
+              "NormalizedTimeEnd": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0.36500000953674316
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.LookAt",
+              "TargetType": "CustomTarget",
+              "CustomTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ParamEntity"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.FireProjectile",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ParamEntity"
+              },
+              "Projectile": {
+                "FlyTime": 0.20000000298023224,
+                "AttachPoint": "Gun",
+                "TargetAttachPoint": "Origin",
+                "TargetOffset": {
+                  "x": 0.0,
+                  "y": 1.0,
+                  "z": 0.0
+                },
+                "IgnoreTargetHitbox": true,
+                "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                "AlignHitEffect": true
+              },
+              "OnProjectileHit": [
+                {
+                  "$type": "RPG.GameCore.DamageByAttackProperty",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ProjectileHitEntity"
+                  },
+                  "AttackProperty": {
+                    "$type": "RPG.GameCore.AttackData",
+                    "DamageType": {
+                      "DamageType": "Thunder"
+                    },
+                    "DamagePercentage": {
+                      "IsDynamic": true,
+                      "PostfixExpr": {
+                        "OpCodes": "AQAR",
+                        "FixedValues": [],
+                        "DynamicHashes": [
+                          -1126825319
+                        ]
+                      }
+                    },
+                    "SPHitRatio": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 1.0
+                      }
+                    },
+                    "IsFaceToHitDir": true,
+                    "HitAnimation": "Hit",
+                    "HitTimeSlowType": "Puncture"
+                  },
+                  "TriggerHitSound": true,
+                  "DisplayData": {
+                    "DitherRangeX": 0.019999999552965164,
+                    "DitherRangeY": 0.019999999552965164
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.VCameraConfigChange",
+                  "CameraConfig": {
+                    "ShakeConfigV2": {
+                      "ShakeRange": 0.44999998807907104,
+                      "ShakeTime": 0.15000000596046448,
+                      "ShakeDir": {
+                        "x": -0.10000000149011612,
+                        "y": -0.10000000149011612,
+                        "z": -0.20000000298023224
+                      },
+                      "BaseCycle": 0.20000000298023224,
+                      "CycleDamping": 0.0,
+                      "RangeAttenuation": 0.949999988079071,
+                      "PerlinNoiseAmplitude": {
+                        "x": 0.10000000149011612,
+                        "y": 0.10000000149011612,
+                        "z": 0.10000000149011612
+                      },
+                      "PerlinNoiseFreq": {
+                        "x": 16.0,
+                        "y": 14.0,
+                        "z": 12.0
+                      }
+                    }
+                  }
+                }
+              ],
+              "WaitProjectileFinish": true
+            },
+            {
+              "$type": "RPG.GameCore.AddModifier",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ParamEntity"
+              },
+              "ModifierName": {
+                "Value": "Monster_W2_Abomi03_00_HitTarget"
+              },
+              "Count": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1.0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.Retarget",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllEnemy"
+          },
+          "ByRandom": true,
+          "MaxNumber": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1.0
+            }
+          },
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByAnd",
+                "PredicateList": [
+                  {
+                    "$type": "RPG.GameCore.ByIsContainModifier",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "ModifierName": {
+                      "Value": "Monster_W2_Abomi03_00_HitTarget"
+                    }
+                  },
+                  {
+                    "$type": "RPG.GameCore.ByCompareModifierValue",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "ModifierName": "Monster_W2_Abomi03_00_HitTarget",
+                    "CompareType": "Equal",
+                    "CompareValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 1.0
+                      }
+                    }
+                  }
+                ]
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "Value": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAOEQ==",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        1856707574
+                      ]
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "RevertFlag"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareDynamicValue",
+                    "DynamicKey": {
+                      "Value": "RevertFlag"
+                    },
+                    "ContextScope": "TargetEntity",
+                    "CompareType": "Equal",
+                    "CompareValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 1.0
+                      }
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.FireProjectile",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "Projectile": {
+                        "FlyTime": 0.07999999821186066,
+                        "StartFromLastHitPos": true,
+                        "TargetAttachPoint": "Origin",
+                        "TargetOffset": {
+                          "x": -0.20000000298023224,
+                          "y": 1.0,
+                          "z": 0.0
+                        },
+                        "IgnoreTargetHitbox": true,
+                        "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                        "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                        "AlignHitEffect": true,
+                        "StartDirction": {
+                          "x": -1.0,
+                          "y": 0.0,
+                          "z": 0.0
+                        }
+                      },
+                      "OnProjectileHit": [
+                        {
+                          "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                          "Name": "Monster_W2_Abomi03_00_BulletHitEffect_SmallShake"
+                        }
+                      ],
+                      "WaitProjectileFinish": true
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.FireProjectile",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "Projectile": {
+                        "FlyTime": 0.07999999821186066,
+                        "StartFromLastHitPos": true,
+                        "TargetAttachPoint": "Origin",
+                        "TargetOffset": {
+                          "x": 0.20000000298023224,
+                          "y": 1.0,
+                          "z": 0.0
+                        },
+                        "IgnoreTargetHitbox": true,
+                        "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                        "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                        "AlignHitEffect": true,
+                        "StartDirction": {
+                          "x": 1.0,
+                          "y": 0.0,
+                          "z": 0.0
+                        }
+                      },
+                      "OnProjectileHit": [
+                        {
+                          "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                          "Name": "Monster_W2_Abomi03_00_BulletHitEffect_SmallShake"
+                        }
+                      ],
+                      "WaitProjectileFinish": true
+                    }
+                  ]
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.FireProjectile",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ParamEntity"
+                  },
+                  "Projectile": {
+                    "FlyTime": 0.07999999821186066,
+                    "StartFromLastHitPos": true,
+                    "TargetAttachPoint": "Origin",
+                    "TargetOffset": {
+                      "x": 0.0,
+                      "y": 1.0,
+                      "z": 0.0
+                    },
+                    "IgnoreTargetHitbox": true,
+                    "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                    "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                    "AlignHitEffect": true
+                  },
+                  "OnProjectileHit": [
+                    {
+                      "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                      "Name": "Monster_W2_Abomi03_00_BulletHitEffect_SmallShake"
+                    }
+                  ],
+                  "WaitProjectileFinish": true
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.AddModifier",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ParamEntity"
+              },
+              "ModifierName": {
+                "Value": "Monster_W2_Abomi03_00_HitTarget"
+              },
+              "Count": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 2.0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.WaitSecond",
+          "WaitTime": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.009999999776482582
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.Retarget",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllEnemy"
+          },
+          "ByRandom": true,
+          "MaxNumber": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1.0
+            }
+          },
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByAnd",
+                "PredicateList": [
+                  {
+                    "$type": "RPG.GameCore.ByIsContainModifier",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "ModifierName": {
+                      "Value": "Monster_W2_Abomi03_00_HitTarget"
+                    }
+                  },
+                  {
+                    "$type": "RPG.GameCore.ByCompareModifierValue",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "ModifierName": "Monster_W2_Abomi03_00_HitTarget",
+                    "CompareType": "Equal",
+                    "CompareValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 2.0
+                      }
+                    }
+                  }
+                ]
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "Value": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAOEQ==",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        1856707574
+                      ]
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "RevertFlag"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareDynamicValue",
+                    "DynamicKey": {
+                      "Value": "RevertFlag"
+                    },
+                    "ContextScope": "TargetEntity",
+                    "CompareType": "Equal",
+                    "CompareValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 1.0
+                      }
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.FireProjectile",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "Projectile": {
+                        "FlyTime": 0.10000000149011612,
+                        "StartFromLastHitPos": true,
+                        "TargetAttachPoint": "Origin",
+                        "TargetOffset": {
+                          "x": -0.20000000298023224,
+                          "y": 1.0,
+                          "z": 0.0
+                        },
+                        "IgnoreTargetHitbox": true,
+                        "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                        "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                        "AlignHitEffect": true,
+                        "StartDirction": {
+                          "x": -1.0,
+                          "y": 0.0,
+                          "z": 0.0
+                        }
+                      },
+                      "OnProjectileHit": [
+                        {
+                          "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                          "Name": "Monster_W2_Abomi03_00_BulletHitEffect_SmallShake"
+                        }
+                      ],
+                      "WaitProjectileFinish": true
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.FireProjectile",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "Projectile": {
+                        "FlyTime": 0.10000000149011612,
+                        "StartFromLastHitPos": true,
+                        "TargetAttachPoint": "Origin",
+                        "TargetOffset": {
+                          "x": 0.20000000298023224,
+                          "y": 1.0,
+                          "z": 0.0
+                        },
+                        "IgnoreTargetHitbox": true,
+                        "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                        "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                        "AlignHitEffect": true,
+                        "StartDirction": {
+                          "x": 1.0,
+                          "y": 0.0,
+                          "z": 0.0
+                        }
+                      },
+                      "OnProjectileHit": [
+                        {
+                          "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                          "Name": "Monster_W2_Abomi03_00_BulletHitEffect_SmallShake"
+                        }
+                      ],
+                      "WaitProjectileFinish": true
+                    }
+                  ]
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.FireProjectile",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ParamEntity"
+                  },
+                  "Projectile": {
+                    "FlyTime": 0.10000000149011612,
+                    "StartFromLastHitPos": true,
+                    "TargetAttachPoint": "Origin",
+                    "TargetOffset": {
+                      "x": 0.0,
+                      "y": 1.0,
+                      "z": 0.0
+                    },
+                    "IgnoreTargetHitbox": true,
+                    "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                    "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                    "AlignHitEffect": true
+                  },
+                  "OnProjectileHit": [
+                    {
+                      "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                      "Name": "Monster_W2_Abomi03_00_BulletHitEffect_SmallShake"
+                    }
+                  ],
+                  "WaitProjectileFinish": true
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.AddModifier",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ParamEntity"
+              },
+              "ModifierName": {
+                "Value": "Monster_W2_Abomi03_00_HitTarget"
+              },
+              "Count": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 3.0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.WaitSecond",
+          "WaitTime": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.019999999552965164
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.Retarget",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllEnemy"
+          },
+          "ByRandom": true,
+          "MaxNumber": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1.0
+            }
+          },
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByAnd",
+                "PredicateList": [
+                  {
+                    "$type": "RPG.GameCore.ByIsContainModifier",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "ModifierName": {
+                      "Value": "Monster_W2_Abomi03_00_HitTarget"
+                    }
+                  },
+                  {
+                    "$type": "RPG.GameCore.ByCompareModifierValue",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "ModifierName": "Monster_W2_Abomi03_00_HitTarget",
+                    "CompareType": "Equal",
+                    "CompareValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 3.0
+                      }
+                    }
+                  }
+                ]
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "Value": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAOEQ==",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        1856707574
+                      ]
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "RevertFlag"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareDynamicValue",
+                    "DynamicKey": {
+                      "Value": "RevertFlag"
+                    },
+                    "ContextScope": "TargetEntity",
+                    "CompareType": "Equal",
+                    "CompareValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 1.0
+                      }
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.FireProjectile",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "Projectile": {
+                        "FlyTime": 0.12999999523162842,
+                        "StartFromLastHitPos": true,
+                        "TargetAttachPoint": "Origin",
+                        "TargetOffset": {
+                          "x": -0.20000000298023224,
+                          "y": 1.0,
+                          "z": 0.0
+                        },
+                        "IgnoreTargetHitbox": true,
+                        "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                        "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                        "AlignHitEffect": true,
+                        "StartDirction": {
+                          "x": -1.0,
+                          "y": 0.0,
+                          "z": 0.0
+                        }
+                      },
+                      "OnProjectileHit": [
+                        {
+                          "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                          "Name": "Monster_W2_Abomi03_00_BulletHitEffect_SmallShake"
+                        }
+                      ],
+                      "WaitProjectileFinish": true
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.FireProjectile",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "Projectile": {
+                        "FlyTime": 0.12999999523162842,
+                        "StartFromLastHitPos": true,
+                        "TargetAttachPoint": "Origin",
+                        "TargetOffset": {
+                          "x": 0.20000000298023224,
+                          "y": 1.0,
+                          "z": 0.0
+                        },
+                        "IgnoreTargetHitbox": true,
+                        "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                        "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                        "AlignHitEffect": true,
+                        "StartDirction": {
+                          "x": 1.0,
+                          "y": 0.0,
+                          "z": 0.0
+                        }
+                      },
+                      "OnProjectileHit": [
+                        {
+                          "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                          "Name": "Monster_W2_Abomi03_00_BulletHitEffect_SmallShake"
+                        }
+                      ],
+                      "WaitProjectileFinish": true
+                    }
+                  ]
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.FireProjectile",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ParamEntity"
+                  },
+                  "Projectile": {
+                    "FlyTime": 0.12999999523162842,
+                    "StartFromLastHitPos": true,
+                    "TargetAttachPoint": "Origin",
+                    "TargetOffset": {
+                      "x": 0.0,
+                      "y": 1.0,
+                      "z": 0.0
+                    },
+                    "IgnoreTargetHitbox": true,
+                    "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                    "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                    "AlignHitEffect": true
+                  },
+                  "OnProjectileHit": [
+                    {
+                      "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                      "Name": "Monster_W2_Abomi03_00_BulletHitEffect_SmallShake"
+                    }
+                  ],
+                  "WaitProjectileFinish": true
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.AddModifier",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ParamEntity"
+              },
+              "ModifierName": {
+                "Value": "Monster_W2_Abomi03_00_HitTarget"
+              },
+              "Count": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 4.0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.WaitSecond",
+          "WaitTime": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.05999999865889549
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.Retarget",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllEnemy"
+          },
+          "ByRandom": true,
+          "MaxNumber": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1.0
+            }
+          },
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByAnd",
+                "PredicateList": [
+                  {
+                    "$type": "RPG.GameCore.ByIsContainModifier",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "ModifierName": {
+                      "Value": "Monster_W2_Abomi03_00_HitTarget"
+                    }
+                  },
+                  {
+                    "$type": "RPG.GameCore.ByCompareModifierValue",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "ModifierName": "Monster_W2_Abomi03_00_HitTarget",
+                    "CompareType": "Equal",
+                    "CompareValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 4.0
+                      }
+                    }
+                  }
+                ]
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "Value": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAOEQ==",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        1856707574
+                      ]
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "RevertFlag"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareDynamicValue",
+                    "DynamicKey": {
+                      "Value": "RevertFlag"
+                    },
+                    "ContextScope": "TargetEntity",
+                    "CompareType": "Equal",
+                    "CompareValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 1.0
+                      }
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.FireProjectile",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "Projectile": {
+                        "FlyTime": 0.1599999964237213,
+                        "StartFromLastHitPos": true,
+                        "TargetAttachPoint": "Origin",
+                        "TargetOffset": {
+                          "x": -0.20000000298023224,
+                          "y": 1.0,
+                          "z": 0.0
+                        },
+                        "IgnoreTargetHitbox": true,
+                        "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                        "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                        "AlignHitEffect": true,
+                        "StartDirction": {
+                          "x": -1.0,
+                          "y": 0.0,
+                          "z": 0.0
+                        }
+                      },
+                      "OnProjectileHit": [
+                        {
+                          "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                          "Name": "Monster_W2_Abomi03_00_BulletHitEffect_SmallShake"
+                        }
+                      ],
+                      "WaitProjectileFinish": true
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.FireProjectile",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "Projectile": {
+                        "FlyTime": 0.1599999964237213,
+                        "StartFromLastHitPos": true,
+                        "TargetAttachPoint": "Origin",
+                        "TargetOffset": {
+                          "x": 0.20000000298023224,
+                          "y": 1.0,
+                          "z": 0.0
+                        },
+                        "IgnoreTargetHitbox": true,
+                        "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                        "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                        "AlignHitEffect": true,
+                        "StartDirction": {
+                          "x": 1.0,
+                          "y": 0.0,
+                          "z": 0.0
+                        }
+                      },
+                      "OnProjectileHit": [
+                        {
+                          "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                          "Name": "Monster_W2_Abomi03_00_BulletHitEffect_SmallShake"
+                        }
+                      ],
+                      "WaitProjectileFinish": true
+                    }
+                  ]
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.FireProjectile",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ParamEntity"
+                  },
+                  "Projectile": {
+                    "FlyTime": 0.1599999964237213,
+                    "StartFromLastHitPos": true,
+                    "TargetAttachPoint": "Origin",
+                    "TargetOffset": {
+                      "x": 0.0,
+                      "y": 1.0,
+                      "z": 0.0
+                    },
+                    "IgnoreTargetHitbox": true,
+                    "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                    "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                    "AlignHitEffect": true
+                  },
+                  "OnProjectileHit": [
+                    {
+                      "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                      "Name": "Monster_W2_Abomi03_00_BulletHitEffect_SmallShake"
+                    }
+                  ],
+                  "WaitProjectileFinish": true
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.AddModifier",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ParamEntity"
+              },
+              "ModifierName": {
+                "Value": "Monster_W2_Abomi03_00_HitTarget"
+              },
+              "Count": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 5.0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.WaitSecond",
+          "WaitTime": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.17000000178813934
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.Retarget",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllEnemy"
+          },
+          "ByRandom": true,
+          "MaxNumber": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1.0
+            }
+          },
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByAnd",
+                "PredicateList": [
+                  {
+                    "$type": "RPG.GameCore.ByIsContainModifier",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "ModifierName": {
+                      "Value": "Monster_W2_Abomi03_00_HitTarget"
+                    }
+                  },
+                  {
+                    "$type": "RPG.GameCore.ByCompareModifierValue",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "ModifierName": "Monster_W2_Abomi03_00_HitTarget",
+                    "CompareType": "Equal",
+                    "CompareValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 5.0
+                      }
+                    }
+                  }
+                ]
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "Value": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAOEQ==",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        1856707574
+                      ]
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "RevertFlag"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareDynamicValue",
+                    "DynamicKey": {
+                      "Value": "RevertFlag"
+                    },
+                    "ContextScope": "TargetEntity",
+                    "CompareType": "Equal",
+                    "CompareValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 1.0
+                      }
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.FireProjectile",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "Projectile": {
+                        "FlyTime": 0.18000000715255737,
+                        "StartFromLastHitPos": true,
+                        "TargetAttachPoint": "Origin",
+                        "TargetOffset": {
+                          "x": -0.20000000298023224,
+                          "y": 1.0,
+                          "z": 0.0
+                        },
+                        "IgnoreTargetHitbox": true,
+                        "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                        "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                        "AlignHitEffect": true,
+                        "StartDirction": {
+                          "x": -1.0,
+                          "y": 0.0,
+                          "z": 0.0
+                        }
+                      },
+                      "OnProjectileHit": [
+                        {
+                          "$type": "RPG.GameCore.DamageByAttackProperty",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ProjectileHitEntity"
+                          },
+                          "AttackProperty": {
+                            "$type": "RPG.GameCore.AttackData",
+                            "DamageType": {
+                              "DamageType": "Thunder"
+                            },
+                            "DamagePercentage": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  -1126825319
+                                ]
+                              }
+                            },
+                            "SPHitRatio": {
+                              "IsDynamic": false,
+                              "FixedValue": {
+                                "Value": 0.20000000298023224
+                              }
+                            },
+                            "HitAnimation": "Hit"
+                          },
+                          "SpecialHitSoundEvent": "Ev_sfx_monster_skill01_hit_end_w2_abomi03_00",
+                          "CanTriggerLastKill": true,
+                          "DisplayData": {
+                            "UIMessageHeight": -0.20000000298023224,
+                            "DitherRangeX": 0.009999999776482582,
+                            "DitherRangeY": 0.03999999910593033
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.VCameraConfigChange",
+                          "CameraConfig": {
+                            "ShakeConfigV2": {
+                              "ShakeRange": 0.25,
+                              "ShakeTime": 0.15000000596046448,
+                              "ShakeDir": {
+                                "x": -0.10000000149011612,
+                                "y": -0.10000000149011612,
+                                "z": -0.20000000298023224
+                              },
+                              "BaseCycle": 0.20000000298023224,
+                              "CycleDamping": 0.0,
+                              "RangeAttenuation": 0.949999988079071,
+                              "PerlinNoiseAmplitude": {
+                                "x": 0.10000000149011612,
+                                "y": 0.10000000149011612,
+                                "z": 0.10000000149011612
+                              },
+                              "PerlinNoiseFreq": {
+                                "x": 16.0,
+                                "y": 14.0,
+                                "z": 12.0
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "WaitProjectileFinish": true
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.FireProjectile",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "Projectile": {
+                        "FlyTime": 0.18000000715255737,
+                        "StartFromLastHitPos": true,
+                        "TargetAttachPoint": "Origin",
+                        "TargetOffset": {
+                          "x": 0.20000000298023224,
+                          "y": 1.0,
+                          "z": 0.0
+                        },
+                        "IgnoreTargetHitbox": true,
+                        "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                        "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                        "AlignHitEffect": true,
+                        "StartDirction": {
+                          "x": 1.0,
+                          "y": 0.0,
+                          "z": 0.0
+                        }
+                      },
+                      "OnProjectileHit": [
+                        {
+                          "$type": "RPG.GameCore.DamageByAttackProperty",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ProjectileHitEntity"
+                          },
+                          "AttackProperty": {
+                            "$type": "RPG.GameCore.AttackData",
+                            "DamageType": {
+                              "DamageType": "Thunder"
+                            },
+                            "DamagePercentage": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  -1126825319
+                                ]
+                              }
+                            },
+                            "SPHitRatio": {
+                              "IsDynamic": false,
+                              "FixedValue": {
+                                "Value": 0.20000000298023224
+                              }
+                            },
+                            "HitAnimation": "Hit"
+                          },
+                          "SpecialHitSoundEvent": "Ev_sfx_monster_skill01_hit_end_w2_abomi03_00",
+                          "CanTriggerLastKill": true,
+                          "DisplayData": {
+                            "UIMessageHeight": -0.20000000298023224,
+                            "DitherRangeX": 0.009999999776482582,
+                            "DitherRangeY": 0.03999999910593033
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.VCameraConfigChange",
+                          "CameraConfig": {
+                            "ShakeConfigV2": {
+                              "ShakeRange": 0.25,
+                              "ShakeTime": 0.15000000596046448,
+                              "ShakeDir": {
+                                "x": -0.10000000149011612,
+                                "y": -0.10000000149011612,
+                                "z": -0.20000000298023224
+                              },
+                              "BaseCycle": 0.20000000298023224,
+                              "CycleDamping": 0.0,
+                              "RangeAttenuation": 0.949999988079071,
+                              "PerlinNoiseAmplitude": {
+                                "x": 0.10000000149011612,
+                                "y": 0.10000000149011612,
+                                "z": 0.10000000149011612
+                              },
+                              "PerlinNoiseFreq": {
+                                "x": 16.0,
+                                "y": 14.0,
+                                "z": 12.0
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "WaitProjectileFinish": true
+                    }
+                  ]
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.FireProjectile",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ParamEntity"
+                  },
+                  "Projectile": {
+                    "FlyTime": 0.18000000715255737,
+                    "StartFromLastHitPos": true,
+                    "TargetAttachPoint": "Origin",
+                    "TargetOffset": {
+                      "x": 0.0,
+                      "y": 1.0,
+                      "z": 0.0
+                    },
+                    "IgnoreTargetHitbox": true,
+                    "FlyEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Bullet.prefab",
+                    "HitEffect": "Effects/Eff_Prefab/Eff_Monster/Eff_W2_Abomi03_00/Eff_Monster_W2_Abomi03_00_Skill01_Hit.prefab",
+                    "AlignHitEffect": true
+                  },
+                  "OnProjectileHit": [
+                    {
+                      "$type": "RPG.GameCore.DamageByAttackProperty",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ProjectileHitEntity"
+                      },
+                      "AttackProperty": {
+                        "$type": "RPG.GameCore.AttackData",
+                        "DamageType": {
+                          "DamageType": "Thunder"
+                        },
+                        "DamagePercentage": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -1126825319
+                            ]
+                          }
+                        },
+                        "SPHitRatio": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 0.20000000298023224
+                          }
+                        },
+                        "HitAnimation": "Hit"
+                      },
+                      "SpecialHitSoundEvent": "Ev_sfx_monster_skill01_hit_end_w2_abomi03_00",
+                      "CanTriggerLastKill": true,
+                      "DisplayData": {
+                        "UIMessageHeight": -0.20000000298023224,
+                        "DitherRangeX": 0.009999999776482582,
+                        "DitherRangeY": 0.03999999910593033
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.VCameraConfigChange",
+                      "CameraConfig": {
+                        "ShakeConfigV2": {
+                          "ShakeRange": 0.25,
+                          "ShakeTime": 0.15000000596046448,
+                          "ShakeDir": {
+                            "x": -0.10000000149011612,
+                            "y": -0.10000000149011612,
+                            "z": -0.20000000298023224
+                          },
+                          "BaseCycle": 0.20000000298023224,
+                          "CycleDamping": 0.0,
+                          "RangeAttenuation": 0.949999988079071,
+                          "PerlinNoiseAmplitude": {
+                            "x": 0.10000000149011612,
+                            "y": 0.10000000149011612,
+                            "z": 0.10000000149011612
+                          },
+                          "PerlinNoiseFreq": {
+                            "x": 16.0,
+                            "y": 14.0,
+                            "z": 12.0
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "WaitProjectileFinish": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.DamagePerformFinish"
+        },
+        {
+          "$type": "RPG.GameCore.WaitSecond",
+          "WaitTime": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.44999998807907104
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SkillPerformFinish"
+        }
+      ],
+      "TaskListTemplate": [
+        {
+          "Name": "Monster_W2_Abomi03_00_BulletHitEffect_BigShake",
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.DamageByAttackProperty",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ProjectileHitEntity"
+              },
+              "AttackProperty": {
+                "$type": "RPG.GameCore.AttackData",
+                "DamageType": {
+                  "DamageType": "Thunder"
+                },
+                "DamagePercentage": {
+                  "IsDynamic": true,
+                  "PostfixExpr": {
+                    "OpCodes": "AQAR",
+                    "FixedValues": [],
+                    "DynamicHashes": [
+                      -1126825319
+                    ]
+                  }
+                },
+                "SPHitRatio": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 0.20000000298023224
+                  }
+                },
+                "HitAnimation": "Hit"
+              },
+              "CanTriggerLastKill": true,
+              "DisplayData": {
+                "UIMessageHeight": -0.20000000298023224,
+                "DitherRangeX": 0.009999999776482582,
+                "DitherRangeY": 0.03999999910593033
+              }
+            },
+            {
+              "$type": "RPG.GameCore.VCameraConfigChange",
+              "CameraConfig": {
+                "ShakeConfigV2": {
+                  "ShakeRange": 0.44999998807907104,
+                  "ShakeTime": 0.15000000596046448,
+                  "ShakeDir": {
+                    "x": -0.10000000149011612,
+                    "y": -0.10000000149011612,
+                    "z": -0.20000000298023224
+                  },
+                  "BaseCycle": 0.20000000298023224,
+                  "CycleDamping": 0.0,
+                  "RangeAttenuation": 0.949999988079071,
+                  "PerlinNoiseAmplitude": {
+                    "x": 0.10000000149011612,
+                    "y": 0.10000000149011612,
+                    "z": 0.10000000149011612
+                  },
+                  "PerlinNoiseFreq": {
+                    "x": 16.0,
+                    "y": 14.0,
+                    "z": 12.0
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "Name": "Monster_W2_Abomi03_00_BulletHitEffect_SmallShake",
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.DamageByAttackProperty",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ProjectileHitEntity"
+              },
+              "AttackProperty": {
+                "$type": "RPG.GameCore.AttackData",
+                "DamageType": {
+                  "DamageType": "Thunder"
+                },
+                "DamagePercentage": {
+                  "IsDynamic": true,
+                  "PostfixExpr": {
+                    "OpCodes": "AQAR",
+                    "FixedValues": [],
+                    "DynamicHashes": [
+                      -1126825319
+                    ]
+                  }
+                },
+                "SPHitRatio": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 0.20000000298023224
+                  }
+                },
+                "HitAnimation": "Hit"
+              },
+              "CanTriggerLastKill": true,
+              "DisplayData": {
+                "UIMessageHeight": -0.20000000298023224,
+                "DitherRangeX": 0.009999999776482582,
+                "DitherRangeY": 0.03999999910593033
+              }
+            },
+            {
+              "$type": "RPG.GameCore.VCameraConfigChange",
+              "CameraConfig": {
+                "ShakeConfigV2": {
+                  "ShakeRange": 0.25,
+                  "ShakeTime": 0.15000000596046448,
+                  "ShakeDir": {
+                    "x": -0.10000000149011612,
+                    "y": -0.10000000149011612,
+                    "z": -0.20000000298023224
+                  },
+                  "BaseCycle": 0.20000000298023224,
+                  "CycleDamping": 0.0,
+                  "RangeAttenuation": 0.949999988079071,
+                  "PerlinNoiseAmplitude": {
+                    "x": 0.10000000149011612,
+                    "y": 0.10000000149011612,
+                    "z": 0.10000000149011612
+                  },
+                  "PerlinNoiseFreq": {
+                    "x": 16.0,
+                    "y": 14.0,
+                    "z": 12.0
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "GlobalModifiers": {
+    "Monster_W2_Abomi03_00_HitTarget": {
+      "Stacking": "Replace",
+      "_CallbackList": [
+        {
+          "Event": "OnListenTurnEnd",
+          "CallbackConfig": [
+            {
+              "$type": "RPG.GameCore.RemoveModifier",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              },
+              "ModifierName": {
+                "Value": "Monster_W2_Abomi03_00_HitTarget"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

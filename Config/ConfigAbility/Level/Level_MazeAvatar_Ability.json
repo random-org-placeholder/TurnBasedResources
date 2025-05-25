@@ -21,21 +21,41 @@
               "Event": "OnListenCharacterCreate",
               "CallbackConfig": [
                 {
-                  "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode",
-                  "TaskEnabled": true,
-                  "Enable": true,
-                  "OverrideInitBlendTime": 2.48482931293485e-32,
-                  "LongEnterBattleCameraDistance": 2.7944526065359546e20,
-                  "SpecialBeHitConfig": {
-                    "MiddleShotDistance": 1.8468664570276642e25,
-                    "CloseShotAimDistanceWeight": 9.585746937913316e-38,
-                    "MiddleShotAimDistanceWeight": 7.64257725393095e-36
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByTargetTeam",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "Team": "TeamLight"
                   },
-                  "AimScreenOffset": {
-                    "x": 2.398572301463113e20,
-                    "y": 3798.09033203125
-                  },
-                  "CustomShotAimDir": "55"
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.AddModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "ModifierName": {
+                        "Value": "MCommon_Protect_Shield"
+                      },
+                      "LifeTime": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 2.0
+                        }
+                      },
+                      "DynamicValues": {
+                        "MDF_ShowValue": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 5000.0
+                          }
+                        }
+                      }
+                    }
+                  ]
                 }
               ]
             }

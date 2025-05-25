@@ -4,15 +4,15 @@
     {
       "TaskList": [
         {
-          "$type": "RPG.GameCore.ShowRogueTalkBg",
-          "TalkBgID": 1
+          "$type": "RPG.GameCore.ShowRogueTalkUI",
+          "Show": true
         },
         {
           "$type": "RPG.GameCore.AdvNpcFaceToPlayer",
           "FinishImmadiate": true
         },
         {
-          "$type": "RPG.GameCore.PlayAeonTalk",
+          "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
           "SimpleTalkList": [
             {
               "TalkSentenceID": 403012302,
@@ -25,31 +25,89 @@
           ]
         },
         {
-          "$type": "RPG.GameCore.PlayRandomMissionTalk",
-          "SimpleTalkList": [
+          "$type": "RPG.GameCore.PlayRogueOptionTalk",
+          "OptionList": [
             {
-              "TextSpeed": -4.734586238861084,
-              "ProtectTime": 2577249075200.0,
-              "ForceToNextTime": 1011135610880.0
+              "TalkSentenceID": 403030203,
+              "OptionIconType": "ChatContinueIcon",
+              "TriggerCustomString": "TalkSentence_403030205"
             },
             {
-              "TextSpeed": 1.7753205526119108e28,
-              "ProtectTime": 2.0805377687338478e-7
+              "TalkSentenceID": 403030204,
+              "OptionIconType": "ChatContinueIcon",
+              "TriggerCustomString": "TalkSentence_403030205"
             }
           ]
         },
         {
-          "$type": "RPG.GameCore.AddServerGameplayCounter"
+          "$type": "RPG.GameCore.SwitchUIMenuBGM",
+          "StateName": "State_Menu_Rougelite"
         }
       ]
     },
     {
-      "IsLoop": true,
-      "Order": -26
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "TalkSentence_403030205"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TalkSentenceID": 403012304,
+              "TalkBgID": 8
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.PlayRogueOptionTalk",
+          "OptionList": [
+            {
+              "TalkSentenceID": 403030206,
+              "OptionIconType": "ChatContinueIcon",
+              "TriggerCustomString": "ALL_TALK_END"
+            }
+          ]
+        }
+      ]
     },
-    {},
     {
-      "Order": 24
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "ALL_TALK_END"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SwitchUIMenuBGM",
+          "StateName": "State_Menu_Rougelite",
+          "ShouldStop": true
+        },
+        {
+          "$type": "RPG.GameCore.ShowUI",
+          "Name": "Ui.Rogue.Buff.RogueEnhanceBuffPage",
+          "WaitForExit": true,
+          "OnUIExitImmediately": [
+            {
+              "$type": "RPG.GameCore.FinishLevelGraph"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
     }
   ]
 }

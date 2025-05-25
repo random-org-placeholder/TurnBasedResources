@@ -4,13 +4,82 @@
     {
       "TaskList": [
         {
-          "TaskEnabled": true
+          "$type": "RPG.GameCore.CollectDataConditions",
+          "TaskIDList": [],
+          "MainMissionIDList": [],
+          "PerformanceIDList": [],
+          "PerformanceIDDsList": [],
+          "CustomValueMainMissionIDList": [
+            1021702
+          ]
         },
-        {},
-        {},
-        {}
+        {
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "E",
+          "HideMunicipalCrowd": false,
+          "HideMunicipalPedestrian": false,
+          "UseNewStreamingSourceType": false
+        },
+        {
+          "$type": "RPG.GameCore.AdvNpcFaceToPlayer",
+          "TaskEnabled": false,
+          "FinishImmadiate": true
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareMissionCustomValue",
+            "MainMissionID": 1021702,
+            "MissionCustomValue": {
+              "Index": 3,
+              "Name": "OldValue_3",
+              "ValidValueParamList": [
+                1,
+                2
+              ]
+            },
+            "TargetValue": 2
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+              "SimpleTalkList": [
+                {
+                  "TalkSentenceID": 102170404,
+                  "ProtectTime": 0.30000001192092896
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.EndPerformance"
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+              "SimpleTalkList": [
+                {
+                  "TalkSentenceID": 102170403,
+                  "ProtectTime": 0.30000001192092896
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.EndPerformance"
+            }
+          ]
+        }
       ]
     },
-    {}
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
+    }
   ]
 }

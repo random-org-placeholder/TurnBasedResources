@@ -4,42 +4,76 @@
     {
       "TaskList": [
         {
-          "$type": "RPG.GameCore.LevelLockFeature",
-          "LockFeatureType": "UISkill03"
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "E",
+          "HideMunicipalCrowd": false,
+          "HideMunicipalPedestrian": false,
+          "UseNewStreamingSourceType": false
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.PlaySimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TalkSentenceID": 202011001,
+              "ProtectTime": 0.30000001192092896
+            }
+          ]
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.WaitSimpleTalkFinish"
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.PlaySimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TalkSentenceID": 202011002,
+              "ProtectTime": 0.30000001192092896
+            }
+          ]
         },
         {
-          "$type": "RPG.GameCore.PlaySerialBells",
-          "SoundEvent": "\u0006�"
+          "$type": "RPG.GameCore.WaitSimpleTalkFinish"
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode",
-          "IsBattleToMaze": true,
-          "LongEnterBattleCameraDistance": -2.648742799786849e-23,
-          "TransitionSpeed": 2.445178343349391e-35,
-          "SpecialBeHitConfig": {
-            "LongShotDistance": 0.30000001192092896,
-            "MiddleShotAimDistanceWeight": -6.31509494730675e-30,
-            "LongShotAimDistanceWeight": 1.844038714128243e-40
-          },
-          "CustomShotAimDir": "-7"
+          "$type": "RPG.GameCore.PlayOptionTalk",
+          "OptionList": [
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 202011003,
+              "OptionIconType": "ChatContinueIcon",
+              "TriggerCustomString": "ALL_TALK_END"
+            }
+          ]
         }
       ]
     },
     {
-      "IsLoop": true,
-      "Order": 6
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "ALL_TALK_END"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayMessage",
+          "MessageSectionID": 1210100,
+          "ShowNotice": false
+        },
+        {
+          "$type": "RPG.GameCore.EndPerformance"
+        }
+      ]
     },
     {
-      "IsLoop": true
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
     }
   ]
 }

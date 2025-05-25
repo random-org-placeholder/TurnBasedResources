@@ -4,50 +4,108 @@
     {
       "TaskList": [
         {
-          "$type": "RPG.GameCore.LevelLockFeature",
-          "LockFeatureType": "UISkill02"
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "D",
+          "CreateCharacterList": [],
+          "EntityVisiableList": [],
+          "UseNewStreamingSourceType": false
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.CaptureLocalPlayer",
+          "CharacterUniqueName": "LocalPlayer"
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.CharacterTriggerAnimState",
+          "CharacterUniqueName": {
+            "Value": "LocalPlayer"
+          },
+          "AnimStateName": "RunStop_R",
+          "NormalizedTimeStart": 0.25,
+          "NormalizedTransitionDuration": 0.10000000149011612,
+          "NormalizedTimeWait": 0.10000000149011612
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
-        },
-        {
-          "$type": "RPG.GameCore.CaptureEntity",
-          "UniqueName": {
-            "Custom": true,
-            "Key": "calPlayer�\u0006�\u0007\u0004\u000bLocalPlayer\tRunStop_R\u0000\u0000�>���=���=�\n��\n\u0000\u0000\u0007\u0000\f1011301_Temp\r101130108_Cam\u001a\u0001\u0004\u001eLevelArea_P20132_F20132"
+          "$type": "RPG.GameCore.PerformanceTransition",
+          "CreateNpcList": [],
+          "DestroyNpcList": [],
+          "ActiveVirtualCamera": {
+            "TaskEnabled": false,
+            "AreaName": "1011301_Temp",
+            "AnchorName": "101130108_Cam"
+          },
+          "SwitchCharacterAnchor": {
+            "IsLocalPlayer": true,
+            "AreaName": {
+              "Value": "LevelArea_P20132_F20132001_G31"
+            },
+            "AnchorName": {
+              "Value": "Anchor4"
+            }
           }
         },
         {
-          "$type": "RPG.GameCore.AddServerGameplayCounter"
-        },
-        {
-          "$type": "RPG.GameCore.AddServerGameplayCounter"
-        },
-        {
-          "$type": "RPG.GameCore.AddSneakEffect",
-          "TaskEnabled": true,
-          "TargetType": {
-            "$type": "RPG.GameCore.TargetFetchDataViewUISelectLeave"
+          "$type": "RPG.GameCore.ActiveVirtualCamera",
+          "AreaName": "1011301_Temp",
+          "AnchorName": "101130108_Cam",
+          "WaitBlendFinish": true,
+          "BlendConfig": {
+            "ExportToJson": true,
+            "BlendType": "Cut",
+            "BlendTime": 2.0
           }
         },
         {
-          "$type": "RPG.GameCore.ActivateServerGameplayCounter"
+          "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+          "SimpleTalkList": [
+            {
+              "TalkSentenceID": 201320412,
+              "ProtectTime": 0.30000001192092896
+            },
+            {
+              "TalkSentenceID": 201320413,
+              "ProtectTime": 0.30000001192092896
+            }
+          ]
         },
         {
-          "$type": "RPG.GameCore.ActiveFarmElement",
-          "TaskEnabled": true
+          "$type": "RPG.GameCore.PlayScreenTransfer",
+          "Mode": "SwitchOut",
+          "CustomTime": 0.5
+        },
+        {
+          "$type": "RPG.GameCore.ActiveVirtualCamera",
+          "AreaName": "1011301_Temp",
+          "AnchorName": "101130108_Cam",
+          "IsActive": false,
+          "WaitBlendFinish": true,
+          "BlendConfig": {
+            "ExportToJson": true,
+            "BlendType": "Cut",
+            "BlendTime": 1.0
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayScreenTransfer",
+          "CustomTime": 0.5
+        },
+        {
+          "$type": "RPG.GameCore.EndPerformance"
         }
       ]
     },
     {
-      "IsLoop": true,
-      "Order": -56
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.ReleaseCharacter",
+          "CharacterUniqueName": "LocalPlayer"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
     }
   ]
 }

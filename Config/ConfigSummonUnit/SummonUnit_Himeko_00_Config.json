@@ -9,19 +9,61 @@
   ],
   "OnCreate": [
     {
-      "$type": "RPG.GameCore.TriggerEffectForUI",
+      "$type": "RPG.GameCore.TriggerEffectList",
       "TargetType": {
         "$type": "RPG.GameCore.TargetAlias",
         "Alias": "Caster"
       },
-      "IsAttachToTargetEntity": true
+      "EffectList": [
+        {
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Himeko_00/Eff_Avatar_Himeko_00_MazeSkill_01_Hit_Once.prefab"
+        }
+      ]
     }
   ],
   "TriggerConfig": {
-    "HintTrigger": {
-      "TriggerHintRadius": 6.800192693309534e22,
-      "HintEffectAttachPoint": "ts/Eff_Prefab/Eff_Avatar/Eff_Himeko_00/Eff_Avatar_Himeko_00_MazeSkill_01_Hit_Once.prefab\u0004\u0002���a\u0017AddD",
-      "HintEffectScale": 2.896987117598211e23
-    }
+    "CustomTriggers": [
+      {
+        "TriggerName": "AddDebuffOnEnemyTrigger",
+        "Radius": {
+          "IsDynamic": false,
+          "FixedValue": {
+            "Value": 5.5
+          }
+        },
+        "UseVerticalBound": true,
+        "NeedRaycast": true,
+        "TargetTypes": [
+          "NPCMonster"
+        ],
+        "ColliderRelativePath": "Trigger",
+        "OnTriggerEnter": [
+          {
+            "$type": "RPG.GameCore.AddMazeBuff",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            },
+            "ID": 100301
+          },
+          {
+            "$type": "RPG.GameCore.TriggerSound",
+            "SoundName": {
+              "Value": "Ev_sfx_avatar_skill_maze_hit_himeko"
+            }
+          }
+        ],
+        "OnTriggerExit": [
+          {
+            "$type": "RPG.GameCore.RemoveMazeBuff",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "TaskActionTarget"
+            },
+            "ID": 100301
+          }
+        ]
+      }
+    ]
   }
 }

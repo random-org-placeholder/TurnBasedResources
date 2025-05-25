@@ -7,13 +7,56 @@
       },
       "OnAdd": [
         {
-          "$type": "RPG.GameCore.TriggerDrinkMakerBartendInMission",
-          "RequestID": 5
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "EffectPath": "Characters/WhiteBox/WEffects/WEff_Prefab/WEff_Monster/WEff_Monster_XP_Minion04_01/WEff_XP_Minion04_01_OuterSkin.prefab"
         }
       ]
     },
     {
-      "Name": "Caster"
+      "Name": "MazeMonster_XP_Minion04_01_Escape",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AdventureTriggerAnimStateWithMove",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AnimLogicState": "Idle",
+          "AnimStateName": "Attack"
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AnimStateName": "Attack",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.949999988079071
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AdventureSubmitSkill"
+        },
+        {
+          "$type": "RPG.GameCore.AdventureSkillTriggerAbility",
+          "AbilityName": "MazeMonster_RogueMonsterEscape"
+        },
+        {
+          "$type": "RPG.GameCore.AdvNPCSetHidden",
+          "IsHidden": true
+        }
+      ]
     }
   ]
 }

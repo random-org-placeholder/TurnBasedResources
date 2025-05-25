@@ -4,26 +4,122 @@
     {
       "TaskList": [
         {
-          "$type": "RPG.GameCore.LevelLockFeature",
-          "LockFeatureType": "UISkill02"
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "D",
+          "AreaPrefabPath": "Story/Discussion/Mission/5000403/DS500040307.prefab",
+          "CreateCharacterList": [
+            {
+              "CharacterUniqueName": "PlayerBoy_00_C00",
+              "AvatarID": "NPC_Avatar_Lad_PlayerBoy_00",
+              "AreaName": "DS500040307.prefab"
+            },
+            {
+              "CharacterUniqueName": "PlayerGirl_00_C00",
+              "AvatarID": "NPC_Avatar_Miss_PlayerGirl_00",
+              "AreaName": "DS500040307.prefab"
+            },
+            {
+              "CharacterUniqueName": "Prop_Chap04_MemoryPhantom_01_C00",
+              "AvatarID": "Prop_Chap04_MemoryPhantom_01",
+              "AreaName": "DS500040307.prefab"
+            }
+          ],
+          "CaptureNPCList": [],
+          "HideNPC": true,
+          "EntityVisiableList": [],
+          "HideProp": true,
+          "HideLocalPlayer": true,
+          "FirstCameraAnchor": "Camera0101",
+          "StreamingSourcesInBlackMask": [],
+          "StreamingSourcesAfterBlackMask": [],
+          "MarkStreamingItems": []
         },
         {
-          "$type": "RPG.GameCore.AddStreamingSource",
-          "TaskEnabled": true,
-          "StreamingSource": {
-            "CenterName": "y/Discussion/Mission/5000403/DS500040307.prefab\u0006\u0016\u0010PlayerBoy_00_C00\u001bNPC_Avatar_Lad_PlayerBoy_00\u0012DS500040307.prefab\u0016",
-            "AreaName": "PlayerGirl_00_C00",
-            "AnchorName": "NPC_Avatar_Miss_PlayerGirl_00"
-          }
+          "$type": "RPG.GameCore.PlayTimeline",
+          "TimelineName": "Story/Discussion/Mission/5000403/DS50004030701.playable",
+          "Type": "Discussion"
         },
         {
-          "$type": "RPG.GameCore.AddBehaviorFlagForModifier",
-          "ModifierName": "500040307.prefab\u0016 Prop_Chap04_MemoryPhantom_01_C00\u001cProp_Chap04_MemoryPhantom_01\u0012DS5"
+          "$type": "RPG.GameCore.PlayOptionTalk",
+          "OptionList": [
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 500043603,
+              "OptionIconType": "ChatContinueIcon",
+              "TriggerCustomString": "TalkSentence_500043604"
+            }
+          ]
         }
       ]
     },
-    {},
-    {}
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "TalkSentence_500043604"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AddFinishMissionData_ConsumeItem",
+          "SubmissionID": 500040303,
+          "SimpleTalk": {},
+          "OnSubmitConfirm": [
+            {
+              "$type": "RPG.GameCore.SetMissionCustomValue",
+              "SubmissionID": 500040303,
+              "MissionCustomValue": {
+                "Index": 2,
+                "Name": "OldValue_2",
+                "isLocal": true,
+                "ValidValueParamList": [
+                  0,
+                  1
+                ]
+              },
+              "CustomValue": 1
+            },
+            {
+              "$type": "RPG.GameCore.PlayTimeline",
+              "TimelineName": "Story/Discussion/Mission/5000403/DS50004030702.playable",
+              "Type": "Discussion",
+              "Parameters": []
+            },
+            {
+              "$type": "RPG.GameCore.EndPerformance"
+            }
+          ],
+          "OnSubmitCancel": [
+            {
+              "$type": "RPG.GameCore.SetMissionCustomValue",
+              "SubmissionID": 500040303,
+              "MissionCustomValue": {
+                "Index": 2,
+                "Name": "OldValue_2",
+                "isLocal": true,
+                "ValidValueParamList": [
+                  0,
+                  1
+                ]
+              }
+            },
+            {
+              "$type": "RPG.GameCore.EndPerformance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
+    }
   ],
-  "Type": "24"
+  "Type": "PerformanceD"
 }

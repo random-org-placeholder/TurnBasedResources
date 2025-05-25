@@ -4,18 +4,208 @@
     {
       "TaskList": [
         {
-          "$type": "RPG.GameCore.LevelLockFeature",
-          "LockFeatureType": "UISkill03"
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "E",
+          "CreateCharacterList": [],
+          "CaptureNPCList": [],
+          "EntityVisiableList": [],
+          "HideMunicipalCrowd": false,
+          "HideMunicipalPedestrian": false,
+          "PropVisiableList": [],
+          "StreamingSourcesInBlackMask": [],
+          "StreamingSourcesAfterBlackMask": [],
+          "MarkStreamingItems": []
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.AdvNpcFaceToPlayer",
+          "TryFaceToFace": false,
+          "OnlyPlayerFaceToNpc": true
         },
         {
-          "$type": "RPG.GameCore.EnableFreelookCameraBattleTransitionMode"
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareItemNum",
+            "Inverse": true,
+            "ItemPair": [
+              {
+                "ItemID": 150059,
+                "ItemNum": 1
+              }
+            ]
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+              "SimpleTalkList": [
+                {
+                  "TextSpeed": 0.0,
+                  "TalkSentenceID": 401555302,
+                  "ProtectTime": 0.0
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.PlayFullScreenTransfer",
+              "TextInfo": {
+                "TextList": [
+                  {
+                    "TalkSentenceID": 401555303
+                  },
+                  {
+                    "TalkSentenceID": 401555304
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+              "SimpleTalkList": [
+                {
+                  "TextSpeed": 0.0,
+                  "TalkSentenceID": 401555305,
+                  "ProtectTime": 0.0
+                },
+                {
+                  "TextSpeed": 0.0,
+                  "TalkSentenceID": 401555306,
+                  "ProtectTime": 0.0
+                },
+                {
+                  "TextSpeed": 0.0,
+                  "TalkSentenceID": 401555307,
+                  "ProtectTime": 0.0
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareQuestGetReward",
+                "QuestID": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 2200601.0
+                  }
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.QuestGetReward",
+                  "QuestIDList": [
+                    {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 2200602.0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.EndPerformance"
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.QuestGetReward",
+                  "QuestIDList": [
+                    {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 2200601.0
+                      }
+                    },
+                    {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 2200602.0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.EndPerformance"
+                }
+              ]
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.PlayAndWaitSimpleTalk",
+              "SimpleTalkList": [
+                {
+                  "TextSpeed": 0.0,
+                  "TalkSentenceID": 404010147,
+                  "ProtectTime": 0.0
+                },
+                {
+                  "TalkSentenceID": 404010148
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareQuestGetReward",
+                "QuestID": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 2200601.0
+                  }
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.QuestGetReward",
+                  "QuestIDList": [
+                    {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 2200602.0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.EndPerformance"
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.QuestGetReward",
+                  "QuestIDList": [
+                    {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 2200601.0
+                      }
+                    },
+                    {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 2200602.0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.EndPerformance"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
-    {}
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
+    }
   ],
   "EntityEventList": []
 }
