@@ -1,6 +1,2 @@
 # TurnBasedResources
-Resources for a specific anime game with stars and trains.
-
-Credit when used.
-
-[Discord](https://discord.gg/nNZXfc2mjH)
+Migrated to [Nyan-Guild](https://github.com/Nyan-Guild/TurnBasedResources)
